@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://do4ow6re1fuib" path="res://audio/victory.wav" id="5_ehv2h"]
 [ext_resource type="PackedScene" uid="uid://cdl4ndjxy4j0e" path="res://background/space.tscn" id="6_7dov7"]
 [ext_resource type="PackedScene" uid="uid://ctvy3twwutvtw" path="res://player.tscn" id="8_15wb7"]
-[ext_resource type="PackedScene" uid="uid://blj440oymc77c" path="res://ennemy/ennemy.tscn" id="9_ehv2h"]
+[ext_resource type="PackedScene" uid="uid://blj440oymc77c" path="res://enemy/enemy.tscn" id="9_ehv2h"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_eoq84"]
 font = ExtResource("4_7dov7")
@@ -129,11 +129,39 @@ libraries = {
 position = Vector2(147, 572)
 collision_mask = 3
 
-[node name="Ennemy" parent="." instance=ExtResource("9_ehv2h")]
-position = Vector2(1067, 460)
+[node name="Enemy positions" type="Node" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Enemy positions"]
+position = Vector2(1025, 73)
+
+[node name="Marker2D5" type="Marker2D" parent="Enemy positions"]
+position = Vector2(872, 465)
+
+[node name="Marker2D6" type="Marker2D" parent="Enemy positions"]
+position = Vector2(1118, 281)
+
+[node name="Marker2D4" type="Marker2D" parent="Enemy positions"]
+position = Vector2(1085, 550)
+
+[node name="Marker2D2" type="Marker2D" parent="Enemy positions"]
+position = Vector2(910, 254)
+
+[node name="Marker2D3" type="Marker2D" parent="Enemy positions"]
+position = Vector2(939, 799)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("9_ehv2h")]
+position = Vector2(1103, 598)
+collision_mask = 3
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("9_ehv2h")]
+position = Vector2(1111, 230)
 collision_mask = 3
 
 [connection signal="dead" from="Player" to="." method="_on_player_dead"]
+[connection signal="move_finished" from="Enemies/Enemy" to="." method="_on_enemy_move_finished"]
+[connection signal="move_finished" from="Enemies/Enemy2" to="." method="_on_ennemy_move_finished"]
 
 [editable path="Player"]
 [editable path="Player2"]

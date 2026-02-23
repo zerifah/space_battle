@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://blj440oymc77c"]
 
-[ext_resource type="Script" uid="uid://cgbwocxc8eebv" path="res://ennemy/ennemy.gd" id="1_8uigf"]
-[ext_resource type="Texture2D" uid="uid://iycdkerqohww" path="res://ennemy/enemyRed1.png" id="2_ieyna"]
+[ext_resource type="Script" uid="uid://cgbwocxc8eebv" path="res://enemy/enemy.gd" id="1_8uigf"]
+[ext_resource type="Texture2D" uid="uid://iycdkerqohww" path="res://enemy/enemyRed1.png" id="2_ieyna"]
 [ext_resource type="Texture2D" uid="uid://cc8twnyl2rr36" path="res://playerShip1_green_explode_6.png" id="17_icql0"]
 [ext_resource type="AudioStream" uid="uid://d3vc2aema4tcx" path="res://audio/laser_shoot.ogg" id="18_5jjyl"]
 
@@ -71,9 +71,9 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ieyna"]
-size = Vector2(1177, 321)
+size = Vector2(1048.5, 321)
 
-[node name="Ennemy" type="Area2D"]
+[node name="Enemy" type="Area2D"]
 script = ExtResource("1_8uigf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -109,7 +109,7 @@ collision_layer = 256
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShootArea"]
-position = Vector2(104.75, -0.5)
+position = Vector2(169, -0.5)
 shape = SubResource("RectangleShape2D_ieyna")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

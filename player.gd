@@ -9,7 +9,7 @@ signal dead
 @onready var bullet_scene = preload("res://bullet.tscn")
 @onready var timer_shoot = $TimerShoot
 @onready var sprite = $AnimatedSprite2D
-@onready var timer_explosion = $TimerExplosion
+#@onready var timer_explosion = $TimerExplosion
 
 var speed = 500
 var friction = 0.1

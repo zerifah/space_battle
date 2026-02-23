@@ -4,9 +4,12 @@ extends Node2D
 @onready var player2 = $Player2
 @onready var background = $Space/Background/TextureRect
 @onready var game_over_ui = $GameOver
+@onready var enemy = $Enemies/Enemy
+@onready var enemies = $Enemies
+@onready var enemy_positions = $"Enemy positions"
 
 var is_player_alive = true
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	var new_background = load("res://background/purple.png")
 	background.texture = new_background
@@ -19,11 +22,20 @@ func _ready() -> void:
 		player2.shoot = "shoot_2"
 	else :
 		player2.queue_free()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	move_enemies()
 
 func _on_player_dead() -> void:
 	is_player_alive = false
 	game_over_ui.visible = true
+	
+func move_enemies() -> void :
+	for enemy in enemies.get_children() :
+		move_enemy(enemy)
+
+func move_enemy(enemy) -> void :
+	var randoms_points =enemy_positions.get_children().pick_random().global_position
+	print('Destination : ' ,randoms_points)
+	enemy.next_position = randoms_points
+
+func _on_enemy_move_finished() -> void:
+	move_enemies()
