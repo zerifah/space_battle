@@ -1,0 +1,139 @@
+[gd_scene load_steps=14 format=3 uid="uid://dl8jkxu8mytcc"]
+
+[ext_resource type="Script" uid="uid://cfu5yvys0p1yh" path="res://level_2.gd" id="1_jg0dc"]
+[ext_resource type="PackedScene" uid="uid://xg18mf3opo6w" path="res://audio.tscn" id="2_0s5r2"]
+[ext_resource type="PackedScene" uid="uid://u26o27vjur8c" path="res://game_over.tscn" id="3_7j8ne"]
+[ext_resource type="FontFile" uid="uid://bs5ef0n12tf1s" path="res://kenvector_future.ttf" id="4_7dov7"]
+[ext_resource type="AudioStream" uid="uid://do4ow6re1fuib" path="res://audio/victory.wav" id="5_ehv2h"]
+[ext_resource type="PackedScene" uid="uid://cdl4ndjxy4j0e" path="res://background/space.tscn" id="6_7dov7"]
+[ext_resource type="PackedScene" uid="uid://ctvy3twwutvtw" path="res://player.tscn" id="8_15wb7"]
+[ext_resource type="PackedScene" uid="uid://blj440oymc77c" path="res://ennemy/ennemy.tscn" id="9_ehv2h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eoq84"]
+font = ExtResource("4_7dov7")
+font_size = 29
+
+[sub_resource type="Animation" id="Animation_h6smj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_8b0r0"]
+resource_name = "explode"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.7333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 0, 0]
+}
+
+[sub_resource type="Animation" id="Animation_aicyk"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v5j5c"]
+_data = {
+&"RESET": SubResource("Animation_h6smj"),
+&"explode": SubResource("Animation_8b0r0"),
+&"idle": SubResource("Animation_aicyk")
+}
+
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_jg0dc")
+
+[node name="Audio" parent="." instance=ExtResource("2_0s5r2")]
+
+[node name="GameOver" parent="." instance=ExtResource("3_7j8ne")]
+visible = false
+
+[node name="UserInterface" type="CanvasLayer" parent="."]
+
+[node name="Score Label" type="Label" parent="UserInterface"]
+offset_left = 18.0
+offset_top = 14.0
+offset_right = 198.0
+offset_bottom = 48.0
+text = "Score : 0"
+label_settings = SubResource("LabelSettings_eoq84")
+
+[node name="Victory Label" type="Label" parent="UserInterface"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -342.0
+offset_top = -377.0
+offset_right = 353.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_7dov7")
+theme_override_font_sizes/font_size = 60
+text = "Victoire!
+Félicitations!
+Votre score est 
+"
+horizontal_alignment = 1
+
+[node name="Button Next Mission" type="Button" parent="UserInterface"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -239.0
+offset_top = -26.0
+offset_right = 240.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0.9644292, 1.540184e-06, 0.5132057, 1)
+theme_override_fonts/font = ExtResource("4_7dov7")
+theme_override_font_sizes/font_size = 41
+text = "Mission suivante"
+
+[node name="Audio Victory" type="AudioStreamPlayer" parent="UserInterface"]
+stream = ExtResource("5_ehv2h")
+
+[node name="Space" parent="." instance=ExtResource("6_7dov7")]
+
+[node name="Player" parent="." instance=ExtResource("8_15wb7")]
+position = Vector2(141, 337)
+collision_layer = 2
+collision_mask = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+libraries = {
+&"": SubResource("AnimationLibrary_v5j5c")
+}
+
+[node name="Player2" parent="." instance=ExtResource("8_15wb7")]
+position = Vector2(147, 572)
+collision_mask = 3
+
+[node name="Ennemy" parent="." instance=ExtResource("9_ehv2h")]
+position = Vector2(1067, 460)
+collision_mask = 3
+
+[connection signal="dead" from="Player" to="." method="_on_player_dead"]
+
+[editable path="Player"]
+[editable path="Player2"]

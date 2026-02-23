@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdl4ndjxy4j0e"]
+
+[ext_resource type="Script" uid="uid://cxace4s248vc8" path="res://background/space.gd" id="1_ewdi4"]
+[ext_resource type="Texture2D" uid="uid://ihuhutanhw7u" path="res://background/blue.png" id="1_gns4x"]
+[ext_resource type="PackedScene" uid="uid://cg0siqgxbjmw" path="res://star.tscn" id="2_ewdi4"]
+
+[node name="Space" type="Node"]
+script = ExtResource("1_ewdi4")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_gns4x")
+stretch_mode = 1
+
+[node name="Stars" type="Node2D" parent="."]
+position = Vector2(-5.345, 0)
+
+[node name="Timer_stars" type="Timer" parent="Stars"]
+wait_time = 4.0
+autostart = true
+
+[node name="Star" parent="Stars" instance=ExtResource("2_ewdi4")]
+position = Vector2(257, 577)
+scale = Vector2(0.5, 0.5)
+
+[node name="Star2" parent="Stars" instance=ExtResource("2_ewdi4")]
+position = Vector2(655, 300)
+
+[node name="Star3" parent="Stars" instance=ExtResource("2_ewdi4")]
+position = Vector2(996, 702)
+scale = Vector2(0.2, 0.2)
+
+[connection signal="timeout" from="Stars/Timer_stars" to="." method="_on_timer_stars_timeout"]

@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://coaeeirklw3c2"]
+
+[ext_resource type="Texture2D" uid="uid://dtomduc13p3k6" path="res://menu_background.png" id="1_lti8b"]
+[ext_resource type="Script" uid="uid://bi2ixntxx85i1" path="res://menu.gd" id="1_mae5d"]
+[ext_resource type="FontFile" uid="uid://bs5ef0n12tf1s" path="res://kenvector_future.ttf" id="3_4hy44"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mae5d")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_lti8b")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -401.5
+offset_top = 180.0
+offset_right = 401.5
+offset_bottom = 248.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_4hy44")
+theme_override_font_sizes/font_size = 60
+text = "Bataille Spatialle"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = -136.0
+offset_right = 110.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Button Start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_4hy44")
+theme_override_font_sizes/font_size = 50
+text = "Start"
+
+[node name="Button Start2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_4hy44")
+theme_override_font_sizes/font_size = 50
+text = "2 joueurs"
+
+[node name="Button Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_4hy44")
+theme_override_font_sizes/font_size = 50
+text = "Quit"
+
+[connection signal="button_down" from="VBoxContainer/Button Start" to="." method="_on_button_start_button_down"]
+[connection signal="button_down" from="VBoxContainer/Button Start2" to="." method="_on_button_start_2_button_down"]
+[connection signal="button_down" from="VBoxContainer/Button Quit" to="." method="_on_button_quit_button_down"]

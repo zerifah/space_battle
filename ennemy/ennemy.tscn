@@ -1,0 +1,116 @@
+[gd_scene load_steps=12 format=3 uid="uid://blj440oymc77c"]
+
+[ext_resource type="Script" uid="uid://cgbwocxc8eebv" path="res://ennemy/ennemy.gd" id="1_8uigf"]
+[ext_resource type="Texture2D" uid="uid://iycdkerqohww" path="res://ennemy/enemyRed1.png" id="2_ieyna"]
+[ext_resource type="Texture2D" uid="uid://cc8twnyl2rr36" path="res://playerShip1_green_explode_6.png" id="17_icql0"]
+[ext_resource type="AudioStream" uid="uid://d3vc2aema4tcx" path="res://audio/laser_shoot.ogg" id="18_5jjyl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i3pqv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ieyna")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_icql0")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ieyna")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
+radius = 44.011364
+
+[sub_resource type="Animation" id="Animation_h6smj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_8b0r0"]
+resource_name = "explode"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.7333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 0, 0]
+}
+
+[sub_resource type="Animation" id="Animation_aicyk"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v5j5c"]
+_data = {
+&"RESET": SubResource("Animation_h6smj"),
+&"explode": SubResource("Animation_8b0r0"),
+&"idle": SubResource("Animation_aicyk")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ieyna"]
+size = Vector2(1177, 321)
+
+[node name="Ennemy" type="Area2D"]
+script = ExtResource("1_8uigf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 0)
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_i3pqv")
+animation = &"idle"
+
+[node name="EnergieTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_5jjyl")
+
+[node name="TimerShoot" type="Timer" parent="."]
+wait_time = 0.97
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_onrkg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_v5j5c")
+}
+
+[node name="Bullets" type="Node" parent="."]
+
+[node name="ShootArea" type="Area2D" parent="."]
+position = Vector2(-740.75, 1.5)
+collision_layer = 256
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShootArea"]
+position = Vector2(104.75, -0.5)
+shape = SubResource("RectangleShape2D_ieyna")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="TimerShoot" to="." method="_on_timer_shoot_timeout"]

@@ -1,0 +1,8 @@
+Bugs à corriger :
+
+Développement :
+	- ajouter un ennemi qui nous tire dessus
+	- créer niveau 2
+	- bouton radio 1/2 joueur(s)
+	- barre de vie
+	- objet à ramasser (bouclier, ...)
