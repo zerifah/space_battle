@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://cuv6ffpbpd5ah"]
+
+[ext_resource type="FontFile" uid="uid://by2450mu3ro8x" path="res://kenney_space-shooter-redux/Bonus/kenvector_future.ttf" id="1_eqcx2"]
+[ext_resource type="Script" uid="uid://c8x6h8cgt8s38" path="res://HUD/mission.gd" id="1_muiqd"]
+[ext_resource type="FontFile" uid="uid://bs5ef0n12tf1s" path="res://themes/kenvector_future.ttf" id="2_alna5"]
+[ext_resource type="Theme" uid="uid://doh57kaowepno" path="res://themes/text_paragraph.tres" id="3_2lade"]
+
+[sub_resource type="Theme" id="Theme_bt44k"]
+default_font = ExtResource("1_eqcx2")
+
+[sub_resource type="LabelSettings" id="LabelSettings_jirdo"]
+font = ExtResource("2_alna5")
+font_size = 101
+font_color = Color(0.6197352, 0.023815554, 0.2531495, 1)
+
+[node name="Mission" type="CanvasLayer"]
+script = ExtResource("1_muiqd")
+
+[node name="TextBackground" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Title" type="Label" parent="."]
+offset_left = 174.0
+offset_top = 10.0
+offset_right = 955.0
+offset_bottom = 125.0
+theme = SubResource("Theme_bt44k")
+text = "Mission 1"
+label_settings = SubResource("LabelSettings_jirdo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MissionText" type="Label" parent="."]
+offset_left = 8.999756
+offset_top = 133.0
+offset_right = 565.02435
+offset_bottom = 447.04077
+scale = Vector2(2.0610602, 2.5092285)
+size_flags_horizontal = 3
+theme = ExtResource("3_2lade")
+theme_override_font_sizes/font_size = 13
+text = "Jeunes pilotes!
+
+Nous avons absolument besoin de vous ! 
+
+Nous n'avons plus assez de pilotes expérimenté·es pour repousser les mystérieuses vagues de météorites qui semblent vouloir détruire notre planète! Votre formation n'est pas terminée, mais comme vous avez montré d'excellentes compétences dans les simulateurs de vol, nous vous avons selectionné pour prendre les commandes d'un vrai vaisseau de chasse! Il faut absolument détruire les météorites avant qu'elles ne détruisent notre planète!
+
+Acceptez-vous la mission que vous nous proposons ?"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ButtonOk" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -326.0
+offset_top = -115.0
+offset_right = 49.0
+offset_bottom = -63.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.6800025, 1.4375827)
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_alna5")
+theme_override_font_sizes/font_size = 38
+text = "OK!"
+
+[connection signal="pressed" from="ButtonOk" to="." method="_on_button_ok_pressed"]
