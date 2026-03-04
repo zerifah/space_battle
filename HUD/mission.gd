@@ -43,7 +43,7 @@ func prepare_message_1() ->String:
 		msg += 'toi !'
 	
 	msg += "\nNous n'avons plus assez de pilotes expérimenté·es pour repousser \
-		les mystérieuses vagues de météorites qui semblent vouloir détruire notre planète!\n"
+		les mystérieuses vagues de météorites qui semblent vouloir détruire notre base! \n"
 	
 	if plural :
 		msg += 'Votre'
@@ -70,8 +70,8 @@ func prepare_message_1() ->String:
 		msg += "s"
 		
 	msg += " pour prendre les commandes d'un vrai vaisseau de chasse! \
-		Il faut absolument détruire les météorites avant qu'elles ne détruisent notre\
-		planète!\n\n"
+		Il faut absolument détruire les météorites avant qu'elles ne détruisent notre \
+		base!\n\n"
 		
 	if plural :
 		msg += "Acceptez-vous la mission que nous vous proposons ?"

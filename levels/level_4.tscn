@@ -1,0 +1,179 @@
+[gd_scene format=3 uid="uid://dl8jkxu8mytcc"]
+
+[ext_resource type="Script" uid="uid://cfu5yvys0p1yh" path="res://levels/level_4.gd" id="1_dmnu2"]
+[ext_resource type="PackedScene" uid="uid://xg18mf3opo6w" path="res://audio/audio.tscn" id="2_sc6c1"]
+[ext_resource type="PackedScene" uid="uid://u26o27vjur8c" path="res://HUD/game_over.tscn" id="3_ng40l"]
+[ext_resource type="FontFile" uid="uid://bs5ef0n12tf1s" path="res://themes/kenvector_future.ttf" id="4_04hp8"]
+[ext_resource type="AudioStream" uid="uid://do4ow6re1fuib" path="res://audio/victory.wav" id="5_8hlpj"]
+[ext_resource type="PackedScene" uid="uid://cdl4ndjxy4j0e" path="res://background/space.tscn" id="6_qhnv2"]
+[ext_resource type="PackedScene" uid="uid://ctvy3twwutvtw" path="res://players/player.tscn" id="7_vru0x"]
+[ext_resource type="PackedScene" uid="uid://blj440oymc77c" path="res://enemy/enemy.tscn" id="8_5oqfd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eoq84"]
+font = ExtResource("4_04hp8")
+font_size = 29
+
+[sub_resource type="Animation" id="Animation_h6smj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_8b0r0"]
+resource_name = "explode"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.7333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 0, 0]
+}
+
+[sub_resource type="Animation" id="Animation_aicyk"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v5j5c"]
+_data = {
+&"RESET": SubResource("Animation_h6smj"),
+&"explode": SubResource("Animation_8b0r0"),
+&"idle": SubResource("Animation_aicyk")
+}
+
+[node name="Level4" type="Node2D" unique_id=1381252406]
+script = ExtResource("1_dmnu2")
+
+[node name="Audio" parent="." unique_id=1900820229 instance=ExtResource("2_sc6c1")]
+
+[node name="GameOver" parent="." unique_id=1337821396 instance=ExtResource("3_ng40l")]
+visible = false
+
+[node name="UserInterface" type="CanvasLayer" parent="." unique_id=546673516]
+
+[node name="Score Label" type="Label" parent="UserInterface" unique_id=648446605]
+offset_left = 18.0
+offset_top = 14.0
+offset_right = 198.0
+offset_bottom = 48.0
+text = "Score : 0"
+label_settings = SubResource("LabelSettings_eoq84")
+
+[node name="Victory Label" type="Label" parent="UserInterface" unique_id=2127457609]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -342.0
+offset_top = -377.0
+offset_right = 353.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_04hp8")
+theme_override_font_sizes/font_size = 60
+text = "Victoire!
+Félicitations!
+Votre score est 
+"
+horizontal_alignment = 1
+
+[node name="Button Next Mission" type="Button" parent="UserInterface" unique_id=1521898889]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -239.0
+offset_top = -26.0
+offset_right = 240.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0.9644292, 1.540184e-06, 0.5132057, 1)
+theme_override_fonts/font = ExtResource("4_04hp8")
+theme_override_font_sizes/font_size = 41
+text = "Mission suivante"
+
+[node name="Audio Victory" type="AudioStreamPlayer" parent="UserInterface" unique_id=885464606]
+stream = ExtResource("5_8hlpj")
+
+[node name="Space" parent="." unique_id=359198899 instance=ExtResource("6_qhnv2")]
+
+[node name="Player" parent="." unique_id=1573449523 instance=ExtResource("7_vru0x")]
+position = Vector2(141, 337)
+collision_layer = 2
+collision_mask = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player" unique_id=1654711760]
+libraries/ = SubResource("AnimationLibrary_v5j5c")
+
+[node name="Player2" parent="." unique_id=1143660694 instance=ExtResource("7_vru0x")]
+position = Vector2(147, 572)
+collision_mask = 3
+
+[node name="Enemy positions" type="Node" parent="." unique_id=1976891092]
+
+[node name="Marker2D" type="Marker2D" parent="Enemy positions" unique_id=447604967]
+position = Vector2(1025, 73)
+
+[node name="Marker2D5" type="Marker2D" parent="Enemy positions" unique_id=1817976856]
+position = Vector2(872, 465)
+
+[node name="Marker2D6" type="Marker2D" parent="Enemy positions" unique_id=176383252]
+position = Vector2(1118, 281)
+
+[node name="Marker2D4" type="Marker2D" parent="Enemy positions" unique_id=89902886]
+position = Vector2(1085, 550)
+
+[node name="Marker2D2" type="Marker2D" parent="Enemy positions" unique_id=366783188]
+position = Vector2(910, 254)
+
+[node name="Marker2D3" type="Marker2D" parent="Enemy positions" unique_id=1906425553]
+position = Vector2(939, 799)
+
+[node name="Marker2D7" type="Marker2D" parent="Enemy positions" unique_id=1051780827]
+position = Vector2(749, 853)
+
+[node name="Enemies" type="Node" parent="." unique_id=1876322090]
+
+[node name="Enemy" parent="Enemies" unique_id=329799491 instance=ExtResource("8_5oqfd")]
+position = Vector2(1173, 642)
+collision_mask = 3
+
+[node name="Enemy2" parent="Enemies" unique_id=1298010823 instance=ExtResource("8_5oqfd")]
+position = Vector2(2514, 292)
+collision_mask = 3
+
+[node name="Enemy3" parent="Enemies" unique_id=1648921043 instance=ExtResource("8_5oqfd")]
+position = Vector2(1613, 888)
+collision_mask = 3
+
+[node name="Enemy4" parent="Enemies" unique_id=408164776 instance=ExtResource("8_5oqfd")]
+position = Vector2(1005, -169)
+collision_mask = 3
+
+[connection signal="dead" from="Player" to="." method="_on_player_dead"]
+[connection signal="dead" from="Player2" to="." method="_on_player_dead"]
+[connection signal="move_finished" from="Enemies/Enemy" to="." method="_on_enemy_move_finished"]
+[connection signal="move_finished" from="Enemies/Enemy2" to="." method="_on_enemy_move_finished"]
+[connection signal="move_finished" from="Enemies/Enemy3" to="." method="_on_enemy_move_finished"]
+[connection signal="move_finished" from="Enemies/Enemy4" to="." method="_on_enemy_move_finished"]
+
+[editable path="Player"]
+[editable path="Player2"]

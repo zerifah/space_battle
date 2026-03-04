@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dfop55hl5b356"]
+
+[ext_resource type="Script" uid="uid://dh3d1wrvks5us" path="res://levels/spawner.gd" id="1_yp5lu"]
+
+[node name="Spawner" type="Node2D" unique_id=1775217180]
+script = ExtResource("1_yp5lu")
+
+[node name="Markers" type="Node2D" parent="." unique_id=647943296]
+
+[node name="Marker2D" type="Marker2D" parent="Markers" unique_id=1241271668]
+position = Vector2(1211, 97)
+
+[node name="Marker2D2" type="Marker2D" parent="Markers" unique_id=1213842733]
+position = Vector2(1218.9999, 216.00003)
+rotation = 0.5235988
+
+[node name="Marker2D3" type="Marker2D" parent="Markers" unique_id=2045417736]
+position = Vector2(1271, 564)
+
+[node name="Marker2D4" type="Marker2D" parent="Markers" unique_id=398741219]
+position = Vector2(1194, 623)
+
+[node name="Marker2D5" type="Marker2D" parent="Markers" unique_id=97272927]
+position = Vector2(1215, 832)
+
+[node name="Marker2D6" type="Marker2D" parent="Markers" unique_id=711047945]
+position = Vector2(1289, 730)
+
+[node name="Marker2D7" type="Marker2D" parent="Markers" unique_id=1123791906]
+position = Vector2(1217, 328)
+
+[node name="Marker2D8" type="Marker2D" parent="Markers" unique_id=1701863625]
+position = Vector2(1217, 444)
+
+[node name="Timer_asteroids" type="Timer" parent="." unique_id=455132895]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer_asteroids" to="." method="_on_timer_asteroids_timeout"]

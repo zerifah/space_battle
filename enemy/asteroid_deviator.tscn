@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://jcko5y1auj2c"]
+
+[ext_resource type="Script" uid="uid://c86c1vdl1ug8q" path="res://enemy/asteroid_deviator.gd" id="1_jni7q"]
+[ext_resource type="Texture2D" uid="uid://cfudbedrr6us5" path="res://enemy/asteroid_deviator_front.png" id="2_o3wd4"]
+[ext_resource type="Texture2D" uid="uid://qch43u27q7rw" path="res://enemy/asteroid_deviator_back.png" id="3_fgv3p"]
+[ext_resource type="PackedScene" uid="uid://cd46cds2quos5" path="res://base/damage.tscn" id="3_jni7q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_csvsm"]
+size = Vector2(68.375, 75)
+
+[node name="AsteroidDeviator" type="Area2D" unique_id=1073559902]
+position = Vector2(-1, 3)
+script = ExtResource("1_jni7q")
+
+[node name="Front" type="Sprite2D" parent="." unique_id=1253086571]
+z_index = 1
+scale = Vector2(1.0871933, 1.0871931)
+texture = ExtResource("2_o3wd4")
+
+[node name="Back" type="Sprite2D" parent="." unique_id=1211930672]
+position = Vector2(-348.5, 67.480774)
+scale = Vector2(1.0576923, 1.0576923)
+texture = ExtResource("3_fgv3p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2056614788]
+position = Vector2(-298, 65)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_csvsm")
+disabled = true
+
+[node name="AsteroidOutputPosition" type="Marker2D" parent="." unique_id=1983173038]
+position = Vector2(-339, 60)
+
+[node name="AsteroidInputPosition" type="Marker2D" parent="." unique_id=1433251917]
+position = Vector2(424, 39)
+
+[node name="Asteroids" type="Node" parent="." unique_id=1284849792]
+
+[node name="TimerAsteroidSpawner" type="Timer" parent="." unique_id=993573171]
+wait_time = 1.2
+one_shot = true
+
+[node name="Damages" parent="." unique_id=712569716 instance=ExtResource("3_jni7q")]
+z_index = 1
+position = Vector2(4, 49)
+scale = Vector2(1.4600226, 1.3969594)
+frame_progress = 0.20175262
+
+[connection signal="timeout" from="TimerAsteroidSpawner" to="." method="_on_timer_asteroid_spawner_timeout"]

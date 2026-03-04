@@ -1,19 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1lttrbr5mnmx"]
+[gd_scene format=3 uid="uid://c1lttrbr5mnmx"]
 
 [ext_resource type="Script" uid="uid://dpqr8xki3ij3" path="res://base/base.gd" id="1_m7viw"]
 [ext_resource type="Texture2D" uid="uid://q1tpmulr0778" path="res://base/base.png" id="2_m7viw"]
 
-[node name="Base" type="Node2D"]
+[node name="Base" type="Area2D" unique_id=188406324]
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("1_m7viw")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1394133300]
 position = Vector2(0, -2)
-scale = Vector2(0.40574062, 0.26688755)
+scale = Vector2(0.49615413, 0.4733955)
 texture = ExtResource("2_m7viw")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=393746425]
 position = Vector2(-53, -142)
 scale = Vector2(8, 8)
-rect = Rect2(-10, -10, 32.75, 51.375)
+rect = Rect2(-10, -23.75, 32.75, 85)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=213825720]
+position = Vector2(0, 2)
+build_mode = 1
+polygon = PackedVector2Array(56, -120, 59, -300, 1, -345, -73, -299, -73, -119, -137, -14, -77, 129, -73, 294, 5, 336, 50, 302, 58, 101, 127, 0, 76, -79)
+
+[node name="Damages" type="Node" parent="." unique_id=1459271264]
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cd46cds2quos5"]
+
+[ext_resource type="Texture2D" uid="uid://4lht3xggtu55" path="res://base/base-damage1.png" id="1_yfrkj"]
+[ext_resource type="Texture2D" uid="uid://bw03kv43jjsks" path="res://base/base-damage2.png" id="2_ij5u4"]
+[ext_resource type="Texture2D" uid="uid://cqdifwv310w1e" path="res://base/base-damage3.png" id="3_g67ky"]
+[ext_resource type="Texture2D" uid="uid://jk7jky3wivtk" path="res://base/base-damage4.png" id="4_h5wr2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6lbad"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yfrkj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ij5u4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_g67ky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h5wr2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+scale = Vector2(0.5990991, 0.5990991)
+sprite_frames = SubResource("SpriteFrames_6lbad")
+frame_progress = 0.46783024

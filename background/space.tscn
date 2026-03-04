@@ -1,16 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdl4ndjxy4j0e"]
+[gd_scene format=3 uid="uid://cdl4ndjxy4j0e"]
 
 [ext_resource type="Script" uid="uid://cxace4s248vc8" path="res://background/space.gd" id="1_ewdi4"]
 [ext_resource type="Texture2D" uid="uid://ihuhutanhw7u" path="res://background/blue.png" id="1_gns4x"]
-[ext_resource type="PackedScene" uid="uid://cg0siqgxbjmw" path="res://star.tscn" id="2_ewdi4"]
+[ext_resource type="PackedScene" uid="uid://cg0siqgxbjmw" path="res://background/star.tscn" id="2_ewdi4"]
 
-[node name="Space" type="Node"]
+[node name="Space" type="Node" unique_id=810409590]
 script = ExtResource("1_ewdi4")
 
-[node name="Background" type="CanvasLayer" parent="."]
+[node name="Background" type="CanvasLayer" parent="." unique_id=1515743325]
 layer = -1
 
-[node name="TextureRect" type="TextureRect" parent="Background"]
+[node name="TextureRect" type="TextureRect" parent="Background" unique_id=1483416532]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,21 +23,22 @@ grow_vertical = 2
 texture = ExtResource("1_gns4x")
 stretch_mode = 1
 
-[node name="Stars" type="Node2D" parent="."]
+[node name="Stars" type="Node2D" parent="." unique_id=748838806]
+z_index = -2
 position = Vector2(-5.345, 0)
 
-[node name="Timer_stars" type="Timer" parent="Stars"]
+[node name="Timer_stars" type="Timer" parent="Stars" unique_id=1386843127]
 wait_time = 4.0
 autostart = true
 
-[node name="Star" parent="Stars" instance=ExtResource("2_ewdi4")]
+[node name="Star" parent="Stars" unique_id=1513405394 instance=ExtResource("2_ewdi4")]
 position = Vector2(257, 577)
 scale = Vector2(0.5, 0.5)
 
-[node name="Star2" parent="Stars" instance=ExtResource("2_ewdi4")]
+[node name="Star2" parent="Stars" unique_id=155366699 instance=ExtResource("2_ewdi4")]
 position = Vector2(655, 300)
 
-[node name="Star3" parent="Stars" instance=ExtResource("2_ewdi4")]
+[node name="Star3" parent="Stars" unique_id=565009234 instance=ExtResource("2_ewdi4")]
 position = Vector2(996, 702)
 scale = Vector2(0.2, 0.2)
 

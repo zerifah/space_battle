@@ -1,14 +1,13 @@
 extends Area2D
 
-signal move_finished()
+signal move_finished(idx)
 
 @onready var dimension = $CollisionShape2D
 @onready var radius = dimension.shape.radius
 @onready var audio = $AudioStreamPlayer2D
-@onready var bullet_scene = preload("res://bullet.tscn")
+@onready var bullet_scene = preload("res://bullet/bullet.tscn")
 @onready var timer_shoot = $TimerShoot
 @onready var sprite = $AnimatedSprite2D
-#@onready var timer_explosion = $TimerExplosion
 @onready var shootarea = $ShootArea/CollisionShape2D
 @onready var next_position = global_position
 var speed = 200
@@ -32,8 +31,8 @@ func _process(delta: float) -> void:
 	move(delta)
 		
 func move(delta: float) -> void:
-	if next_position.distance_squared_to(global_position) < 10 :
-		move_finished.emit()
+	if next_position.distance_squared_to(global_position) < 5 :
+		move_finished.emit(get_index())
 	else :
 		var direction =	(global_position - next_position).normalized()
 		global_position.x -= direction.x * speed * delta

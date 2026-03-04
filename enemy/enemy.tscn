@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cgbwocxc8eebv" path="res://enemy/enemy.gd" id="1_8uigf"]
 [ext_resource type="Texture2D" uid="uid://iycdkerqohww" path="res://enemy/enemyRed1.png" id="2_ieyna"]
-[ext_resource type="Texture2D" uid="uid://cc8twnyl2rr36" path="res://playerShip1_green_explode_6.png" id="17_icql0"]
+[ext_resource type="Texture2D" uid="uid://cc8twnyl2rr36" path="res://players/playerShip1_green_explode_6.png" id="17_icql0"]
 [ext_resource type="AudioStream" uid="uid://d3vc2aema4tcx" path="res://audio/laser_shoot.ogg" id="18_5jjyl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_i3pqv"]
@@ -74,6 +74,7 @@ _data = {
 size = Vector2(1048.5, 321)
 
 [node name="Enemy" type="Area2D"]
+collision_layer = 4
 script = ExtResource("1_8uigf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

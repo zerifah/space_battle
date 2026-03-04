@@ -1,8 +1,25 @@
 Bugs à corriger :
 
 Développement :
-	- ajouter un ennemi qui nous tire dessus
-	- créer niveau 2
+	- ajouter un timer au niveau 2 pour que les vaisseaux ennemies rebougent
+		(immobile si le marker choisi est leur position actuelle)
 	- bouton radio 1/2 joueur(s)
 	- barre de vie
 	- objet à ramasser (bouclier, ...)
+	
+Niveau 1 :  protéger la base des nuées d'astéroides
+	- texte d'accueil : Jeune pilote...
+	- Astéroides qui tombe sur la base qui s'abime
+	- le dernier astéroide contient un minerais rare
+
+Niveau 2 : Passer la ceinture d'astéroides :
+	- créer le déviateur de fin de niveau
+	- on comprend qui a organiser tout ça
+
+Niveau 	3 : Infiltration (se cacher)
+	- tout est à faire
+	
+Niveau 4 : Combattre les gardes
+	- ajouter des gardes, décoration d'une planète?
+
+Niveau 5 : boss final, gros vaisseau.

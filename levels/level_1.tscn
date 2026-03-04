@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://d2y3o0pm5k3ul"]
+
+[ext_resource type="Script" uid="uid://bovedpns2o5uu" path="res://levels/level_1.gd" id="1_3sk1a"]
+[ext_resource type="FontFile" uid="uid://bs5ef0n12tf1s" path="res://themes/kenvector_future.ttf" id="1_vn7o3"]
+[ext_resource type="PackedScene" uid="uid://xg18mf3opo6w" path="res://audio/audio.tscn" id="2_aerfg"]
+[ext_resource type="PackedScene" uid="uid://u26o27vjur8c" path="res://HUD/game_over.tscn" id="3_nmsli"]
+[ext_resource type="AudioStream" uid="uid://do4ow6re1fuib" path="res://audio/victory.wav" id="7_betor"]
+[ext_resource type="PackedScene" uid="uid://cdl4ndjxy4j0e" path="res://background/space.tscn" id="8_vjtdm"]
+[ext_resource type="PackedScene" uid="uid://bwhyo37mgolq4" path="res://asteroid/asteroid.tscn" id="9_bgw3c"]
+[ext_resource type="PackedScene" uid="uid://c1lttrbr5mnmx" path="res://base/base.tscn" id="11_oqlok"]
+[ext_resource type="PackedScene" uid="uid://ctvy3twwutvtw" path="res://players/player.tscn" id="12_7nvrk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jkxa6"]
+font = ExtResource("1_vn7o3")
+font_size = 29
+
+[sub_resource type="Animation" id="Animation_h6smj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_8b0r0"]
+resource_name = "explode"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.7333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 0, 0]
+}
+
+[sub_resource type="Animation" id="Animation_aicyk"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v5j5c"]
+_data = {
+&"RESET": SubResource("Animation_h6smj"),
+&"explode": SubResource("Animation_8b0r0"),
+&"idle": SubResource("Animation_aicyk")
+}
+
+[node name="Level_1" type="Node2D" unique_id=115794938]
+script = ExtResource("1_3sk1a")
+
+[node name="Audio" parent="." unique_id=1096992565 instance=ExtResource("2_aerfg")]
+visible = false
+
+[node name="GameOver" parent="." unique_id=978564657 instance=ExtResource("3_nmsli")]
+visible = false
+
+[node name="UserInterface" type="CanvasLayer" parent="." unique_id=846367827]
+
+[node name="Score Label" type="Label" parent="UserInterface" unique_id=1256908363]
+offset_left = 18.0
+offset_top = 14.0
+offset_right = 198.0
+offset_bottom = 48.0
+text = "Score : 0"
+label_settings = SubResource("LabelSettings_jkxa6")
+
+[node name="Victory Label" type="Label" parent="UserInterface" unique_id=733289285]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -342.0
+offset_top = -377.0
+offset_right = 353.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_vn7o3")
+theme_override_font_sizes/font_size = 60
+text = "Victoire!
+Félicitations!
+Votre score est 
+"
+horizontal_alignment = 1
+
+[node name="Button Next Mission" type="Button" parent="UserInterface" unique_id=807109756]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -239.0
+offset_top = -26.0
+offset_right = 240.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0.9644292, 1.540184e-06, 0.5132057, 1)
+theme_override_fonts/font = ExtResource("1_vn7o3")
+theme_override_font_sizes/font_size = 41
+text = "Mission suivante"
+
+[node name="Audio Victory" type="AudioStreamPlayer" parent="UserInterface" unique_id=983790175]
+stream = ExtResource("7_betor")
+
+[node name="Space" parent="." unique_id=1074660981 instance=ExtResource("8_vjtdm")]
+
+[node name="Asteroids" type="Node2D" parent="." unique_id=2030138592]
+
+[node name="Asteroid" parent="Asteroids" unique_id=2117182819 instance=ExtResource("9_bgw3c")]
+position = Vector2(978, 459)
+
+[node name="Base" parent="." unique_id=854879846 instance=ExtResource("11_oqlok")]
+position = Vector2(138, 460)
+
+[node name="Player" parent="." unique_id=1573582592 instance=ExtResource("12_7nvrk")]
+position = Vector2(139.345, 220)
+collision_layer = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player" unique_id=852021056]
+libraries/ = SubResource("AnimationLibrary_v5j5c")
+
+[node name="Player2" parent="." unique_id=1937099973 instance=ExtResource("12_7nvrk")]
+position = Vector2(135.345, 677)
+collision_layer = 4
+
+[node name="AsteroidTimer" type="Timer" parent="." unique_id=400915878]
+wait_time = 3.0
+autostart = true
+
+[connection signal="pressed" from="UserInterface/Button Next Mission" to="." method="_on_button_next_mission_pressed"]
+[connection signal="crash" from="Asteroids/Asteroid" to="." method="_on_asteroid_crash"]
+[connection signal="destroyed" from="Asteroids/Asteroid" to="." method="_on_asteroid_destroyed"]
+[connection signal="exit" from="Asteroids/Asteroid" to="." method="_on_asteroid_exit"]
+[connection signal="dead" from="Player" to="." method="_on_player_dead"]
+[connection signal="dead" from="Player2" to="." method="_on_player_dead"]
+[connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]
+
+[editable path="Player"]
+[editable path="Player2"]
