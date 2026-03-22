@@ -68,7 +68,8 @@ func _physics_process(delta: float) -> void:
 
 		var bullet = bullet_scene.instantiate()
 		bullet.global_position = self.global_position
-		bullet.global_position.x += radius  	
+		bullet.global_position.x += radius
+		bullet.shooter_name = self.name
 		add_child(bullet)
 		
 		energie -= 1

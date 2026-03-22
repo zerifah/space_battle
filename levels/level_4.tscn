@@ -129,51 +129,34 @@ collision_mask = 3
 
 [node name="Enemy positions" type="Node" parent="." unique_id=1976891092]
 
-[node name="Marker2D" type="Marker2D" parent="Enemy positions" unique_id=447604967]
-position = Vector2(1025, 73)
+[node name="MarkerUpLeft" type="Marker2D" parent="Enemy positions" unique_id=447604967]
+position = Vector2(797, 31)
 
-[node name="Marker2D5" type="Marker2D" parent="Enemy positions" unique_id=1817976856]
-position = Vector2(872, 465)
+[node name="MarkerDownRight" type="Marker2D" parent="Enemy positions" unique_id=1051780827]
+position = Vector2(1126, 891)
 
-[node name="Marker2D6" type="Marker2D" parent="Enemy positions" unique_id=176383252]
-position = Vector2(1118, 281)
+[node name="SpawnPointUpLeft" type="Marker2D" parent="Enemy positions" unique_id=366783188]
+position = Vector2(1321, -347)
 
-[node name="Marker2D4" type="Marker2D" parent="Enemy positions" unique_id=89902886]
-position = Vector2(1085, 550)
-
-[node name="Marker2D2" type="Marker2D" parent="Enemy positions" unique_id=366783188]
-position = Vector2(910, 254)
-
-[node name="Marker2D3" type="Marker2D" parent="Enemy positions" unique_id=1906425553]
-position = Vector2(939, 799)
-
-[node name="Marker2D7" type="Marker2D" parent="Enemy positions" unique_id=1051780827]
-position = Vector2(749, 853)
+[node name="SpawnPointDownRight" type="Marker2D" parent="Enemy positions" unique_id=1906425553]
+position = Vector2(2087, 1254)
 
 [node name="Enemies" type="Node" parent="." unique_id=1876322090]
 
 [node name="Enemy" parent="Enemies" unique_id=329799491 instance=ExtResource("8_5oqfd")]
-position = Vector2(1173, 642)
+position = Vector2(1053, 648)
 collision_mask = 3
 
 [node name="Enemy2" parent="Enemies" unique_id=1298010823 instance=ExtResource("8_5oqfd")]
-position = Vector2(2514, 292)
-collision_mask = 3
-
-[node name="Enemy3" parent="Enemies" unique_id=1648921043 instance=ExtResource("8_5oqfd")]
-position = Vector2(1613, 888)
-collision_mask = 3
-
-[node name="Enemy4" parent="Enemies" unique_id=408164776 instance=ExtResource("8_5oqfd")]
-position = Vector2(1005, -169)
+position = Vector2(1387, -121)
 collision_mask = 3
 
 [connection signal="dead" from="Player" to="." method="_on_player_dead"]
 [connection signal="dead" from="Player2" to="." method="_on_player_dead"]
+[connection signal="death" from="Enemies/Enemy" to="." method="_on_enemy_death"]
 [connection signal="move_finished" from="Enemies/Enemy" to="." method="_on_enemy_move_finished"]
+[connection signal="death" from="Enemies/Enemy2" to="." method="_on_enemy_death"]
 [connection signal="move_finished" from="Enemies/Enemy2" to="." method="_on_enemy_move_finished"]
-[connection signal="move_finished" from="Enemies/Enemy3" to="." method="_on_enemy_move_finished"]
-[connection signal="move_finished" from="Enemies/Enemy4" to="." method="_on_enemy_move_finished"]
 
 [editable path="Player"]
 [editable path="Player2"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://blj440oymc77c"]
+[gd_scene format=3 uid="uid://blj440oymc77c"]
 
 [ext_resource type="Script" uid="uid://cgbwocxc8eebv" path="res://enemy/enemy.gd" id="1_8uigf"]
 [ext_resource type="Texture2D" uid="uid://iycdkerqohww" path="res://enemy/enemyRed1.png" id="2_ieyna"]
@@ -28,7 +28,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
-radius = 44.011364
+radius = 40.012497
 
 [sub_resource type="Animation" id="Animation_h6smj"]
 length = 0.001
@@ -73,45 +73,42 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ieyna"]
 size = Vector2(1048.5, 321)
 
-[node name="Enemy" type="Area2D"]
+[node name="Enemy" type="Area2D" unique_id=14804077]
 collision_layer = 4
 script = ExtResource("1_8uigf")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1239375459]
 position = Vector2(-1, 0)
 rotation = 1.5707964
 sprite_frames = SubResource("SpriteFrames_i3pqv")
 animation = &"idle"
 
-[node name="EnergieTimer" type="Timer" parent="."]
+[node name="EnergieTimer" type="Timer" parent="." unique_id=1710220625]
 wait_time = 0.1
 autostart = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=374117561]
 stream = ExtResource("18_5jjyl")
 
-[node name="TimerShoot" type="Timer" parent="."]
+[node name="TimerShoot" type="Timer" parent="." unique_id=49330071]
 wait_time = 0.97
 one_shot = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1858457117]
 shape = SubResource("CircleShape2D_onrkg")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_v5j5c")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1991352018]
+libraries/ = SubResource("AnimationLibrary_v5j5c")
 
-[node name="Bullets" type="Node" parent="."]
+[node name="Bullets" type="Node" parent="." unique_id=618967002]
 
-[node name="ShootArea" type="Area2D" parent="."]
+[node name="ShootArea" type="Area2D" parent="." unique_id=1188770924]
 position = Vector2(-740.75, 1.5)
 collision_layer = 256
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ShootArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShootArea" unique_id=369244692]
 position = Vector2(169, -0.5)
 shape = SubResource("RectangleShape2D_ieyna")
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="timeout" from="TimerShoot" to="." method="_on_timer_shoot_timeout"]

@@ -1,6 +1,7 @@
 extends Area2D
 
 signal move_finished(idx)
+signal death
 
 @onready var dimension = $CollisionShape2D
 @onready var radius = dimension.shape.radius
@@ -10,12 +11,15 @@ signal move_finished(idx)
 @onready var sprite = $AnimatedSprite2D
 @onready var shootarea = $ShootArea/CollisionShape2D
 @onready var next_position = global_position
+@onready var bullets = $Bullets
+
 var speed = 200
 var friction = 0.1
 var acceleration = 300
 var energie = 3
 var recharge = 0.1
 var target_in_sight = false
+var already_exploding = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,11 +44,11 @@ func move(delta: float) -> void:
 
 func shoot():
 	var bullet = bullet_scene.instantiate()
-	bullet.shooter = self
+	bullet.shooter_name = self.name
 	bullet.global_position = self.global_position
 	bullet.global_position.x -= radius
 	bullet.speed = - bullet.speed
-	add_child(bullet)
+	bullets.add_child(bullet)
 	
 	energie -= 1
 	audio.play()
@@ -53,11 +57,10 @@ func _on_timer_shoot_timeout() -> void:
 	shoot()
 	
 func explode():
-	sprite.play("explode")
-	await get_tree().create_timer(1.0).timeout # Créé un timer unique
-	queue_free()
-
-func _on_area_entered(area: Area2D) -> void:
-	var shooter = area.get_parent()
-	if shooter != self :
-		explode()
+	# For count no more than one kill
+	if not already_exploding :
+		sprite.play("explode")
+		already_exploding = true
+		death.emit()
+		await get_tree().create_timer(1.0).timeout # Créé un timer unique
+		queue_free()
