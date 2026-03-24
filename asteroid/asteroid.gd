@@ -3,6 +3,7 @@ extends Area2D
 signal exit
 signal destroyed
 signal crash(position:Vector2, scale:Vector2)
+signal collision(asteroid:Area2D, area: Area2D)
 
 @onready var sprite = $Sprite2D
 @onready var collisionShape = $CollisionShape2D
@@ -37,7 +38,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	
 func _on_body_entered(body) :
 	if body.has_method("explode") :
-		body.explode()
+		body.touched()
 	sprite.texture = new_texture_health_on_0
 	
 func die():
@@ -56,9 +57,5 @@ func on_touch() :
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.name == 'Base' :
-		crash.emit(global_position, scale)
-		sprite.texture = new_texture_crash
-		delta_speed_x = 0 
-		await get_tree().create_timer(2.0).timeout
-		queue_free()
+	print('Emission')
+	collision.emit(self, area)
