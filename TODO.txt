@@ -1,0 +1,11 @@
+Bugs à corriger :
+	- parfois un gros météorite mort nous touche quand meme
+	- parfois on perd notre bouclier et on meurt en un coup!
+		
+Développement :
+	- Magasin
+	- Niveau 5 : boss final, gros vaisseau.
+	
+Cosmetique :
+	- crée scène 'spaceship' et player et ennemy hérite
+	- créer une réelle sauvegarde

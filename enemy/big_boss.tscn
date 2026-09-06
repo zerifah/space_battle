@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://bc43hiseyjbhd"]
+
+[ext_resource type="Texture2D" uid="uid://0lga3tpyy077" path="res://enemy/big_boss.png" id="1_8ftc7"]
+[ext_resource type="Script" uid="uid://cwouyp0fespxy" path="res://enemy/big_boss.gd" id="1_nu6fn"]
+[ext_resource type="PackedScene" uid="uid://cd46cds2quos5" path="res://damage/damage.tscn" id="3_8fewr"]
+[ext_resource type="PackedScene" uid="uid://dctfe82j4rn7n" path="res://enemy/tower.tscn" id="4_upma6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ftc7"]
+size = Vector2(27, 55)
+
+[node name="BigBoss" type="CharacterBody2D" unique_id=1696920544]
+script = ExtResource("1_nu6fn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2082328443]
+texture = ExtResource("1_8ftc7")
+
+[node name="Body" type="CollisionPolygon2D" parent="." unique_id=1830725060]
+polygon = PackedVector2Array(-40, 24, 99, 27, 95, -37, -87, -42, -58, -122, -20, -153, 58, -164, 144, -145, 196, -88, 219, -30, 203, 62, 169, 108, 93, 149, 26, 143, -36, 111, -77, 64, -91, 33)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="." unique_id=378840108]
+position = Vector2(-267, -52.999992)
+scale = Vector2(0.9999999, 0.9999999)
+polygon = PackedVector2Array(1, -7.6293945e-06, 53, -120.000015, 7, -145.00003, -40, -53.000015, -53, 45, -46, 143, -19, 200.00002, 10, 254.00003, 57, 221.00002, 13, 139, -6, 64)
+
+[node name="CollisionShape2D2" type="CollisionPolygon2D" parent="." unique_id=1561750217]
+position = Vector2(-43, 235)
+polygon = PackedVector2Array(-3, 16, 67, 63, 161, 78, 259, 10, 335, -89, 370, -240, 334, -388, 299, -439, 195, -529, 113, -546, 57, -529, 0, -485, 19, -436, 99, -489, 176, -485, 256, -414, 303, -306, 310, -192, 291, -116, 236, -28, 161, 18, 89, 15, 19, -35)
+
+[node name="BossHearth" type="Area2D" parent="." unique_id=1755499818]
+collision_layer = 15
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossHearth" unique_id=1665756694]
+position = Vector2(74.5, -9.5)
+shape = SubResource("RectangleShape2D_8ftc7")
+
+[node name="Damages" type="Node2D" parent="." unique_id=1593960422]
+position = Vector2(-267, -52.999992)
+scale = Vector2(0.9999999, 0.9999999)
+
+[node name="Damage1" parent="Damages" unique_id=197114403 instance=ExtResource("3_8fewr")]
+visible = false
+position = Vector2(374.0001, 46.000004)
+frame_progress = 0.9783267
+
+[node name="Damage2" parent="Damages" unique_id=826146380 instance=ExtResource("3_8fewr")]
+visible = false
+position = Vector2(381.00003, 120.00003)
+scale = Vector2(1.0472975, 0.8806308)
+
+[node name="Damage3" parent="Damages" unique_id=760739742 instance=ExtResource("3_8fewr")]
+visible = false
+position = Vector2(268.00003, -13.000006)
+scale = Vector2(0.92117137, 0.92117137)
+
+[node name="Damage4" parent="Damages" unique_id=630914693 instance=ExtResource("3_8fewr")]
+visible = false
+position = Vector2(261.43753, 54.562515)
+scale = Vector2(1.293356, 1.293356)
+
+[node name="Towers" type="Node2D" parent="." unique_id=341071936]
+position = Vector2(-43, 235)
+
+[node name="Tower" parent="Towers" unique_id=1668647685 instance=ExtResource("4_upma6")]
+position = Vector2(168, -241)
+
+[node name="Tower2" parent="Towers" unique_id=2037833160 instance=ExtResource("4_upma6")]
+position = Vector2(-210, -386)
+
+[node name="Tower3" parent="Towers" unique_id=972551439 instance=ExtResource("4_upma6")]
+position = Vector2(-257, -230)
+
+[node name="Tower4" parent="Towers" unique_id=188600761 instance=ExtResource("4_upma6")]
+position = Vector2(-213, -79)
+
+[node name="Tower5" parent="Towers" unique_id=215147176 instance=ExtResource("4_upma6")]
+position = Vector2(120, 45)
+
+[node name="Tower6" parent="Towers" unique_id=1011578858 instance=ExtResource("4_upma6")]
+position = Vector2(116, -518)

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dctfe82j4rn7n"]
+
+[ext_resource type="Texture2D" uid="uid://b7yanao51arxc" path="res://enemy/tower.png" id="1_lnshp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nf1cd"]
+size = Vector2(22, 32)
+
+[node name="Tower" type="Area2D" unique_id=1668647685]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1203235174]
+texture = ExtResource("1_lnshp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=524246358]
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_nf1cd")

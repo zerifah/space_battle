@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://d2ti8k7efsbdw"]
+
+[ext_resource type="Script" uid="uid://dbe8jphs7jtnc" path="res://levels/level_base.gd" id="1_hk6b7"]
+[ext_resource type="PackedScene" uid="uid://xg18mf3opo6w" path="res://audio/audio.tscn" id="2_ep22m"]
+[ext_resource type="PackedScene" uid="uid://u26o27vjur8c" path="res://HUD/game_over.tscn" id="3_ts4ud"]
+[ext_resource type="FontFile" uid="uid://bs5ef0n12tf1s" path="res://themes/kenvector_future.ttf" id="4_jd1fy"]
+[ext_resource type="AudioStream" uid="uid://do4ow6re1fuib" path="res://audio/victory.wav" id="5_cnvg6"]
+[ext_resource type="PackedScene" uid="uid://coaeeirklw3c2" path="res://HUD/menu.tscn" id="6_cnvg6"]
+[ext_resource type="PackedScene" uid="uid://cdl4ndjxy4j0e" path="res://background/space.tscn" id="6_jd1fy"]
+[ext_resource type="PackedScene" uid="uid://ctvy3twwutvtw" path="res://players/player.tscn" id="6_ts4ud"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_p3adb"]
+font = ExtResource("4_jd1fy")
+font_size = 29
+
+[sub_resource type="Animation" id="Animation_h6smj"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_8b0r0"]
+resource_name = "explode"
+
+[sub_resource type="Animation" id="Animation_aicyk"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jd1fy"]
+_data = {
+&"RESET": SubResource("Animation_h6smj"),
+&"explode": SubResource("Animation_8b0r0"),
+&"idle": SubResource("Animation_aicyk")
+}
+
+[node name="LevelBase" type="Node2D" unique_id=1659077494 groups=["Persist"]]
+script = ExtResource("1_hk6b7")
+
+[node name="Audio" parent="." unique_id=649027954 instance=ExtResource("2_ep22m")]
+visible = false
+
+[node name="GameOver" parent="." unique_id=1741134312 instance=ExtResource("3_ts4ud")]
+visible = false
+
+[node name="UserInterface" type="CanvasLayer" parent="." unique_id=1313313022]
+
+[node name="Score Label" type="Label" parent="UserInterface" unique_id=639121699]
+offset_left = 18.0
+offset_top = 14.0
+offset_right = 198.0
+offset_bottom = 48.0
+text = "Score : 0"
+label_settings = SubResource("LabelSettings_p3adb")
+metadata/_edit_use_anchors_ = true
+
+[node name="Victory Label" type="Label" parent="UserInterface" unique_id=2143903478]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -342.0
+offset_top = -377.0
+offset_right = 353.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_jd1fy")
+theme_override_font_sizes/font_size = 60
+text = "Victoire!
+Félicitations!
+Votre score est 
+"
+horizontal_alignment = 1
+
+[node name="Button Next Mission" type="Button" parent="UserInterface" unique_id=1339062430]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -239.0
+offset_top = -26.0
+offset_right = 240.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(0.9644292, 1.540184e-06, 0.5132057, 1)
+theme_override_fonts/font = ExtResource("4_jd1fy")
+theme_override_font_sizes/font_size = 41
+text = "Mission suivante"
+
+[node name="Audio Victory" type="AudioStreamPlayer" parent="UserInterface" unique_id=1797940777]
+stream = ExtResource("5_cnvg6")
+
+[node name="Menu" parent="UserInterface" unique_id=1795268243 groups=["Persist"] instance=ExtResource("6_cnvg6")]
+visible = false
+
+[node name="Space" parent="." unique_id=810409590 instance=ExtResource("6_jd1fy")]
+
+[node name="Player" parent="." unique_id=1461487922 instance=ExtResource("6_ts4ud")]
+position = Vector2(139.345, 220)
+collision_layer = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player" unique_id=85309417]
+libraries/ = SubResource("AnimationLibrary_jd1fy")
+
+[node name="Player2" parent="." unique_id=285629961 instance=ExtResource("6_ts4ud")]
+position = Vector2(135.345, 677)
+collision_layer = 4
+
+[node name="Enemies" type="Node" parent="." unique_id=2124219939]
+
+[node name="Asteroids" type="Node" parent="." unique_id=722333116]
+
+[connection signal="pressed" from="UserInterface/Button Next Mission" to="." method="_on_button_next_mission_pressed"]
+[connection signal="load" from="UserInterface/Menu" to="." method="_on_menu_load"]
+[connection signal="save" from="UserInterface/Menu" to="." method="_on_menu_save"]
+[connection signal="dead" from="Player" to="." method="_on_player_dead"]
+[connection signal="dead" from="Player2" to="." method="_on_player_dead"]
+
+[editable path="Player"]
+[editable path="Player2"]

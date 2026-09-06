@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://coaeeirklw3c2"]
+
+[ext_resource type="Texture2D" uid="uid://dtomduc13p3k6" path="res://HUD/menu_background.png" id="1_lti8b"]
+[ext_resource type="Script" uid="uid://bi2ixntxx85i1" path="res://HUD/menu.gd" id="1_mae5d"]
+[ext_resource type="FontFile" uid="uid://bs5ef0n12tf1s" path="res://themes/kenvector_future.ttf" id="3_4hy44"]
+
+[node name="MenuStart" type="Control" unique_id=1795268243]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mae5d")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1656636818]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_lti8b")
+
+[node name="Title" type="Label" parent="." unique_id=986953926]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -401.5
+offset_top = 105.0
+offset_right = 401.5
+offset_bottom = 173.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_4hy44")
+theme_override_font_sizes/font_size = 60
+text = "Bataille Spatialle"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1371731085]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -152.0
+offset_top = -631.0
+offset_right = 230.0
+offset_bottom = -256.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Start" type="VBoxContainer" parent="VBoxContainer" unique_id=840370019]
+layout_mode = 2
+
+[node name="Button Start" type="Button" parent="VBoxContainer/Start" unique_id=1013848598]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_4hy44")
+theme_override_font_sizes/font_size = 50
+text = "Start"
+
+[node name="HBoxDifficulty" type="HBoxContainer" parent="VBoxContainer/Start" unique_id=88237914]
+layout_mode = 2
+alignment = 1
+
+[node name="ButtonEasy" type="Button" parent="VBoxContainer/Start/HBoxDifficulty" unique_id=1781825558]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+button_pressed = true
+text = "Facile"
+
+[node name="ButtonHard" type="Button" parent="VBoxContainer/Start/HBoxDifficulty" unique_id=701233534]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+text = "Difficile"
+
+[node name="HBoxNumberPlayers" type="HBoxContainer" parent="VBoxContainer/Start" unique_id=1623382292]
+layout_mode = 2
+alignment = 1
+
+[node name="Button1Player" type="Button" parent="VBoxContainer/Start/HBoxNumberPlayers" unique_id=1545377564]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+button_pressed = true
+text = "🚀 "
+
+[node name="Button2Players" type="Button" parent="VBoxContainer/Start/HBoxNumberPlayers" unique_id=1419985958]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+toggle_mode = true
+text = "🚀🚀"
+
+[node name="ButtonLoad" type="Button" parent="VBoxContainer" unique_id=1253612336]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_4hy44")
+theme_override_font_sizes/font_size = 50
+text = "Charger"
+
+[node name="ButtonSave" type="Button" parent="VBoxContainer" unique_id=1279548114]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_4hy44")
+theme_override_font_sizes/font_size = 50
+text = "Sauver"
+
+[node name="ButtonResume" type="Button" parent="VBoxContainer" unique_id=859089453]
+process_mode = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_4hy44")
+theme_override_font_sizes/font_size = 50
+text = "Reprendre"
+
+[node name="ButtonQuit" type="Button" parent="VBoxContainer" unique_id=1789171511]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_4hy44")
+theme_override_font_sizes/font_size = 50
+text = "Quitter"
+
+[connection signal="button_down" from="VBoxContainer/Start/Button Start" to="." method="_on_button_start_button_down"]
+[connection signal="toggled" from="VBoxContainer/Start/HBoxDifficulty/ButtonEasy" to="." method="_on_button_easy_toggled"]
+[connection signal="toggled" from="VBoxContainer/Start/HBoxDifficulty/ButtonHard" to="." method="_on_button_hard_toggled"]
+[connection signal="toggled" from="VBoxContainer/Start/HBoxNumberPlayers/Button1Player" to="." method="_on_button_1_player_toggled"]
+[connection signal="toggled" from="VBoxContainer/Start/HBoxNumberPlayers/Button2Players" to="." method="_on_button_2_players_toggled"]
+[connection signal="button_down" from="VBoxContainer/ButtonLoad" to="." method="_on_button_load_button_down"]
+[connection signal="button_down" from="VBoxContainer/ButtonSave" to="." method="_on_button_save_button_down"]
+[connection signal="button_down" from="VBoxContainer/ButtonResume" to="." method="_on_button_resume_button_down"]
+[connection signal="button_down" from="VBoxContainer/ButtonQuit" to="." method="_on_button_quit_button_down"]

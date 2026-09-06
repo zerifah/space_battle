@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cs6np31x4oc6j"]
+
+[ext_resource type="PackedScene" uid="uid://d2ti8k7efsbdw" path="res://levels/level_base.tscn" id="1_r8unp"]
+[ext_resource type="PackedScene" uid="uid://bwhyo37mgolq4" path="res://asteroid/asteroid.tscn" id="2_0fm5q"]
+[ext_resource type="Script" uid="uid://dd2tkjh86i5m" path="res://levels/level3.gd" id="2_cpie4"]
+[ext_resource type="PackedScene" uid="uid://dfop55hl5b356" path="res://levels/spawner.tscn" id="3_cpie4"]
+
+[node name="Level3" unique_id=1659077494 instance=ExtResource("1_r8unp")]
+script = ExtResource("2_cpie4")
+two_players = false
+
+[node name="Player" parent="." index="4" unique_id=1461487922]
+rotation = -3.1415927
+
+[node name="Player2" parent="." index="5" unique_id=285629961]
+position = Vector2(235, 747)
+rotation = -3.1415927
+
+[node name="AsteroidsSpawner" parent="." index="6" unique_id=1775217180 instance=ExtResource("3_cpie4")]
+
+[node name="Score timer" type="Timer" parent="." index="7" unique_id=758017912]
+autostart = true
+
+[node name="Bullets" type="Node" parent="." index="8" unique_id=1355415829]
+
+[node name="Enemy positions" type="Node" parent="." index="9" unique_id=1326936599]
+
+[node name="MarkerUpLeft" type="Marker2D" parent="Enemy positions" index="0" unique_id=1488432147]
+position = Vector2(797, 31)
+
+[node name="MarkerDownRight" type="Marker2D" parent="Enemy positions" index="1" unique_id=1254181638]
+position = Vector2(1126, 891)
+
+[node name="SpawnPointUpLeft" type="Marker2D" parent="Enemy positions" index="2" unique_id=733580058]
+position = Vector2(1321, -347)
+
+[node name="SpawnPointDownRight" type="Marker2D" parent="Enemy positions" index="3" unique_id=841150585]
+position = Vector2(2087, 1254)
+
+[node name="Asteroid" parent="Asteroids" parent_id_path=PackedInt32Array(722333116) index="0" unique_id=1169255621 instance=ExtResource("2_0fm5q")]
+position = Vector2(955, 659)
+
+[node name="Asteroid2" parent="Asteroids" parent_id_path=PackedInt32Array(722333116) index="1" unique_id=1386138103 instance=ExtResource("2_0fm5q")]
+position = Vector2(356, 510)
+
+[node name="Asteroid3" parent="Asteroids" parent_id_path=PackedInt32Array(722333116) index="2" unique_id=167133214 instance=ExtResource("2_0fm5q")]
+position = Vector2(847, 297)
+
+[connection signal="timeout" from="Score timer" to="." method="_on_score_timer_timeout"]
+[connection signal="collision" from="Asteroids/Asteroid" to="." method="_on_asteroid_collision"]
+[connection signal="exit" from="Asteroids/Asteroid" to="." method="_on_asteroid_exit"]
+[connection signal="collision" from="Asteroids/Asteroid2" to="." method="_on_asteroid_collision"]
+[connection signal="collision" from="Asteroids/Asteroid3" to="." method="_on_asteroid_collision"]
+
+[editable path="UserInterface/Menu"]
+[editable path="Player"]
+[editable path="Player2"]

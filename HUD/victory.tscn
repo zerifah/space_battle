@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://c3fiqqt05dvch"]
+
+[ext_resource type="Script" uid="uid://byo047bethd53" path="res://HUD/victory.gd" id="1_bjji1"]
+[ext_resource type="FontFile" uid="uid://bs5ef0n12tf1s" path="res://themes/kenvector_future.ttf" id="1_vdj6c"]
+[ext_resource type="Texture2D" uid="uid://dtomduc13p3k6" path="res://HUD/menu_background.png" id="2_67xut"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_67xut"]
+font = ExtResource("1_vdj6c")
+font_size = 29
+
+[sub_resource type="Theme" id="Theme_fwl6l"]
+
+[node name="Victory" type="Node2D" unique_id=1844039207]
+script = ExtResource("1_bjji1")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1839536592]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 1152.0
+offset_bottom = 653.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.997775, 1.4109733)
+size_flags_vertical = 4
+texture = ExtResource("2_67xut")
+
+[node name="Victory Label" type="Label" parent="." unique_id=1163815501]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 255.0
+offset_top = 44.0
+offset_right = 950.0
+offset_bottom = 325.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_vdj6c")
+theme_override_font_sizes/font_size = 60
+text = "Victoire!
+Félicitations!
+Votre score est 
+"
+horizontal_alignment = 1
+
+[node name="NameInputForm" type="VBoxContainer" parent="." unique_id=763813133]
+offset_left = 441.0
+offset_top = 413.0
+offset_right = 739.0
+offset_bottom = 521.0
+
+[node name="Score Label" type="Label" parent="NameInputForm" unique_id=142755304]
+layout_mode = 2
+text = "Score : 0"
+label_settings = SubResource("LabelSettings_67xut")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="NameInputForm" unique_id=689121962]
+layout_mode = 2
+theme = SubResource("Theme_fwl6l")
+theme_override_fonts/font = ExtResource("1_vdj6c")
+theme_override_font_sizes/font_size = 24
+text = "Entrez votre nom"
+
+[node name="NameInput" type="LineEdit" parent="NameInputForm" unique_id=1360426293]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+max_length = 25
+
+[node name="SubmitButton" type="Button" parent="NameInputForm" unique_id=592659091]
+layout_mode = 2
+text = "OK"
+
+[node name="ScoreList" type="VBoxContainer" parent="." unique_id=994226918]
+offset_left = 387.0
+offset_top = 335.0
+offset_right = 387.0
+offset_bottom = 375.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScoreList" unique_id=1820946757]
+visible = false
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScoreList/HBoxContainer" unique_id=1668727694]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Georges"
+
+[node name="Label2" type="Label" parent="ScoreList/HBoxContainer" unique_id=1430981150]
+layout_mode = 2
+text = "0"
