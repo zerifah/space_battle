@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqdifwv310w1e"
-path="res://.godot/imported/base-damage3.png-24cc5d1eda56811bc66bdea9ff8edc3c.ctex"
+uid="uid://jk7jky3wivtk"
+path="res://.godot/imported/damage4.png-c7eff9be65a428d1ba3c62765fcfb18c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://base/base-damage3.png"
-dest_files=["res://.godot/imported/base-damage3.png-24cc5d1eda56811bc66bdea9ff8edc3c.ctex"]
+source_file="res://damage/damage4.png"
+dest_files=["res://.godot/imported/damage4.png-c7eff9be65a428d1ba3c62765fcfb18c.ctex"]
 
 [params]
 

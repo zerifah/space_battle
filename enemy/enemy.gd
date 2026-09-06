@@ -11,7 +11,9 @@ signal death
 @onready var sprite = $AnimatedSprite2D
 @onready var shootarea = $ShootArea/CollisionShape2D
 @onready var next_position = global_position
-@onready var bullets = $Bullets
+@onready var laser = preload("res://bullet/laserRed05.png")
+@onready var bullets = self.get_parent().get_parent().get_node("Bullets")
+@onready var damage = $Damage
 
 var speed = 200
 var friction = 0.1
@@ -23,7 +25,9 @@ var already_exploding = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	damage.global_rotation = randi_range(0, 180)
+	damage.global_scale.x = randf_range(0.4, 0.6)
+	damage.global_scale.y = randf_range(0.4, 0.6)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -35,8 +39,10 @@ func _process(delta: float) -> void:
 	move(delta)
 		
 func move(delta: float) -> void:
+	#print("nextposition", next_position, " global position", global_position  )
 	if next_position.distance_squared_to(global_position) < 5 :
 		move_finished.emit(get_index())
+		
 	else :
 		var direction =	(global_position - next_position).normalized()
 		global_position.x -= direction.x * speed * delta
@@ -48,6 +54,7 @@ func shoot():
 	bullet.global_position = self.global_position
 	bullet.global_position.x -= radius
 	bullet.speed = - bullet.speed
+	bullet.get_node("Sprite2D").texture = laser
 	bullets.add_child(bullet)
 	
 	energie -= 1
@@ -59,7 +66,9 @@ func _on_timer_shoot_timeout() -> void:
 func explode():
 	# For count no more than one kill
 	if not already_exploding :
-		sprite.play("explode")
+		#sprite.play("explode")
+		damage.visible = true
+		damage.play('default')
 		already_exploding = true
 		death.emit()
 		await get_tree().create_timer(1.0).timeout # Créé un timer unique

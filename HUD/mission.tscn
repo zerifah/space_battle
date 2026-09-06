@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cuv6ffpbpd5ah"]
+[gd_scene format=3 uid="uid://cuv6ffpbpd5ah"]
 
 [ext_resource type="FontFile" uid="uid://by2450mu3ro8x" path="res://kenney_space-shooter-redux/Bonus/kenvector_future.ttf" id="1_eqcx2"]
 [ext_resource type="Script" uid="uid://c8x6h8cgt8s38" path="res://HUD/mission.gd" id="1_muiqd"]
@@ -13,10 +13,10 @@ font = ExtResource("2_alna5")
 font_size = 101
 font_color = Color(0.6197352, 0.023815554, 0.2531495, 1)
 
-[node name="Mission" type="CanvasLayer"]
+[node name="Mission" type="CanvasLayer" unique_id=966730143]
 script = ExtResource("1_muiqd")
 
-[node name="TextBackground" type="ColorRect" parent="."]
+[node name="TextBackground" type="ColorRect" parent="." unique_id=468173867]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -24,7 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="Label" parent="." unique_id=117434648]
 offset_left = 174.0
 offset_top = 10.0
 offset_right = 955.0
@@ -35,7 +35,7 @@ label_settings = SubResource("LabelSettings_jirdo")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MissionText" type="Label" parent="."]
+[node name="MissionText" type="Label" parent="." unique_id=1774759837]
 offset_left = 8.999756
 offset_top = 133.0
 offset_right = 565.02435
@@ -54,7 +54,7 @@ Acceptez-vous la mission que vous nous proposons ?"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="ButtonOk" type="Button" parent="."]
+[node name="ButtonOk" type="Button" parent="." unique_id=92595231]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0

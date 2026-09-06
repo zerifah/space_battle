@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://ccgbydlpuawq5"]
+
+[ext_resource type="Script" uid="uid://0182scy3ldvc" path="res://HUD/player_panel.gd" id="1_bmsqa"]
+[ext_resource type="Texture2D" uid="uid://6o35fpgl3r8i" path="res://players/playerShip3_blue.png" id="2_pbf7r"]
+
+[node name="PlayerPanel" type="VBoxContainer" unique_id=720962016]
+script = ExtResource("1_bmsqa")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1098032359]
+position = Vector2(203, -49)
+texture = ExtResource("2_pbf7r")
+
+[node name="ButtonShield" type="Button" parent="." unique_id=482545565]
+layout_mode = 2
+focus_neighbor_right = NodePath("../ButtonReactor")
+focus_neighbor_bottom = NodePath("../ButtonReactor")
+theme_override_font_sizes/font_size = 32
+text = "Bouclier"
+
+[node name="ButtonReactor" type="Button" parent="." unique_id=1948133223]
+layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonShield")
+focus_neighbor_top = NodePath("../ButtonShield")
+focus_neighbor_right = NodePath("../ButtonCondensator")
+focus_neighbor_bottom = NodePath("../ButtonCondensator")
+theme_override_font_sizes/font_size = 32
+text = "Réacteur"
+
+[node name="ButtonCondensator" type="Button" parent="." unique_id=1459732842]
+layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonReactor")
+focus_neighbor_top = NodePath("../ButtonReactor")
+focus_neighbor_right = NodePath("../ButtonAccumulor")
+focus_neighbor_bottom = NodePath("../ButtonAccumulor")
+theme_override_font_sizes/font_size = 32
+text = "Condensateur"
+
+[node name="ButtonAccumulor" type="Button" parent="." unique_id=1555538114]
+layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonCondensator")
+focus_neighbor_top = NodePath("../ButtonCondensator")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+theme_override_font_sizes/font_size = 32
+text = "Accumulateur"

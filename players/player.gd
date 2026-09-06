@@ -6,15 +6,19 @@ signal dead
 @onready var dimension = $CollisionShape2D
 @onready var radius = dimension.shape.radius
 @onready var audio = $AudioStreamPlayer2D
+@onready var audio_shield = $AudioShield
 @onready var bullet_scene = preload("res://bullet/bullet.tscn")
 @onready var timer_shoot = $TimerShoot
 @onready var sprite = $AnimatedSprite2D
-#@onready var timer_explosion = $TimerExplosion
+@onready var shield = $Shield
+@onready var energy_line = $Condensators/Energy
+@onready var damage = $Damage
 
 var speed = 500
 var friction = 0.1
 var acceleration = 350
-var energie = 3
+var energy_max = 3 # Maximum value for energy
+var energy = 0 # Initial value for energy
 var recharge = 0.15
 var shoot_ready = true
 
@@ -23,16 +27,23 @@ var move_down = "move_down"
 var move_left = "move_left"
 var move_right = "move_right"
 var shoot = "shoot"
+var shoot_direction = 1 # Shoot to -1 => left ; 1 => right
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	damage.global_rotation = randi_range(0, 180)
+	damage.global_scale.x = randf_range(0.4, 0.6)
+	damage.global_scale.y = randf_range(0.4, 0.6)
+	if global_rotation > 0 :
+		shoot_direction = -1 
 	if name == "Player" :
 		sprite.play("idle_player_1")
 	else :
 		sprite.play("idle_player_2")
 
-func _physics_process(delta: float) -> void:
-	# En commentaire, pour un déplacement sans accélération ni frottement
+
+func _physics_process(_delta: float) -> void:
+	# En commentaire, pour u		print('Boss Dead')n déplacement sans accélération ni frottement
 		
 	if Input.is_action_pressed(move_up):
 		velocity.y = clamp(velocity.y, -speed, -acceleration)
@@ -62,25 +73,35 @@ func _physics_process(delta: float) -> void:
 	global_position = global_position.clamp(Vector2(radius,radius), position_max)
 	
 	#Tir
-	if Input.is_action_pressed(shoot) and shoot_ready and energie >= 1:
-		shoot_ready = false
-		timer_shoot.start()
-
-		var bullet = bullet_scene.instantiate()
-		bullet.global_position = self.global_position
-		bullet.global_position.x += radius
-		bullet.shooter_name = self.name
-		add_child(bullet)
-		
-		energie -= 1
-		audio.play()
+	if Input.is_action_pressed(shoot) and shoot_ready and energy >= 1:
+		shooting()
 
 	# Détection des collisions avec le deuxième joueur
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		if collision.get_collider() is CharacterBody2D or collision.get_collider() is Area2D:
-			explode()
-			collision.get_collider().explode()
+	#for i in get_slide_collision_count():
+		#var collision = get_slide_collision(i)
+		#if collision.get_collider() is CharacterBody2D or collision.get_collider() is Area2D:
+			#explode()
+			#collision.get_collider().explode()
+	
+	# Mise à jour du condensateur d'énergie
+	update_condensators_energie()
+
+
+func shooting():
+	shoot_ready = false
+	timer_shoot.start()
+	var bullet = bullet_scene.instantiate()
+	bullet.global_position = self.global_position
+	bullet.global_position.x += shoot_direction * radius
+	bullet.shooter_name = self.name
+	bullet.speed = shoot_direction * speed
+	add_child(bullet)
+	energy -= 1
+	audio.play()
+	
+func update_condensators_energie():
+	energy_line.scale.x = float(energy)/energy_max
+	energy_line.color.a = float(energy)/energy_max
 		
 func death():
 	dead.emit()
@@ -90,17 +111,29 @@ func die():
 	queue_free()
 
 func _on_energie_timer_timeout() -> void:
-	if energie < 3 :
-		energie += recharge
+	if energy < energy_max :
+		energy += recharge
 
 func _on_timer_shoot_timeout() -> void:
 	shoot_ready = true
 
-func explode():
-	if name == "Player" :
-		sprite.play("explode_player_1")
+func touched() :
+	if not self.has_node('Shield') :
+		explode()
 	else :
-		sprite.play("explode_player_2")
-		
-	await get_tree().create_timer(2.0).timeout # Créé un timer unique
-	death()
+		shield.queue_free()
+		audio_shield.play()
+
+
+func explode():
+	if not Settings.victory :
+		damage.visible = true
+		damage.play('default')
+		#if name == "Player" :
+			#sprite.play("explode_player_1")
+		#else :
+			#sprite.play("explode_player_2")
+
+		await get_tree().create_timer(2.0).timeout # Créé un timer unique
+		death()
+	

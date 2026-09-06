@@ -1,0 +1,172 @@
+[gd_scene format=3 uid="uid://c07myojye12cj"]
+
+[ext_resource type="Script" uid="uid://bi0v61pa0ogha" path="res://HUD/market.gd" id="1_sp81b"]
+[ext_resource type="FontFile" uid="uid://by2450mu3ro8x" path="res://kenney_space-shooter-redux/Bonus/kenvector_future.ttf" id="2_fbtw2"]
+[ext_resource type="FontFile" uid="uid://bs5ef0n12tf1s" path="res://themes/kenvector_future.ttf" id="3_it8bd"]
+[ext_resource type="Theme" uid="uid://doh57kaowepno" path="res://themes/text_paragraph.tres" id="4_0sbr5"]
+[ext_resource type="Texture2D" uid="uid://6o35fpgl3r8i" path="res://players/playerShip3_blue.png" id="5_it8bd"]
+[ext_resource type="Texture2D" uid="uid://dgs6xtesnjeby" path="res://players/playerShip1_green.png" id="6_0sbr5"]
+
+[sub_resource type="Theme" id="Theme_bt44k"]
+default_font = ExtResource("2_fbtw2")
+
+[sub_resource type="LabelSettings" id="LabelSettings_jirdo"]
+font = ExtResource("3_it8bd")
+font_size = 101
+font_color = Color(0.6197352, 0.023815554, 0.2531495, 1)
+
+[node name="Market" type="CanvasLayer" unique_id=966730143]
+script = ExtResource("1_sp81b")
+
+[node name="TextBackground" type="ColorRect" parent="." unique_id=468173867]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 6.0
+offset_right = -1.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Title" type="Label" parent="." unique_id=117434648]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -533.5
+offset_right = 533.5
+offset_bottom = 233.0
+grow_horizontal = 2
+theme = SubResource("Theme_bt44k")
+text = "Améliorez
+votre vaisseau"
+label_settings = SubResource("LabelSettings_jirdo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MissionText" type="Label" parent="." unique_id=1774759837]
+visible = false
+offset_left = 8.999756
+offset_top = 133.0
+offset_right = 565.02435
+offset_bottom = 447.04077
+scale = Vector2(2.0610602, 2.5092285)
+size_flags_horizontal = 3
+theme = ExtResource("4_0sbr5")
+theme_override_font_sizes/font_size = 13
+text = "Jeunes pilotes!
+
+Nous avons absolument besoin de vous ! 
+
+Nous n'avons plus assez de pilotes expérimenté·es pour repousser les mystérieuses vagues de météorites qui semblent vouloir détruire notre planète! Votre formation n'est pas terminée, mais comme vous avez montré d'excellentes compétences dans les simulateurs de vol, nous vous avons selectionné pour prendre les commandes d'un vrai vaisseau de chasse! Il faut absolument détruire les météorites avant qu'elles ne détruisent notre planète!
+
+Acceptez-vous la mission que vous nous proposons ?"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ButtonOk" type="Button" parent="." unique_id=92595231]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -326.0
+offset_top = -115.0
+offset_right = 49.0
+offset_bottom = -63.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.6800025, 1.4375827)
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("3_it8bd")
+theme_override_font_sizes/font_size = 38
+text = "OK!"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1327386754]
+custom_minimum_size = Vector2(800, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = -50.5
+offset_right = 61.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="UpgradePlayer1" type="VBoxContainer" parent="HBoxContainer" unique_id=105710410]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/UpgradePlayer1" unique_id=527227588]
+position = Vector2(203, -49)
+texture = ExtResource("5_it8bd")
+
+[node name="ButtonShield1" type="Button" parent="HBoxContainer/UpgradePlayer1" unique_id=688958242]
+layout_mode = 2
+focus_neighbor_right = NodePath("../ButtonReactor1")
+focus_neighbor_bottom = NodePath("../ButtonReactor1")
+theme_override_font_sizes/font_size = 32
+text = "Bouclier"
+
+[node name="ButtonReactor1" type="Button" parent="HBoxContainer/UpgradePlayer1" unique_id=1556850339]
+layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonShield1")
+focus_neighbor_top = NodePath("../ButtonShield1")
+focus_neighbor_right = NodePath("../ButtonCondensator1")
+focus_neighbor_bottom = NodePath("../ButtonCondensator1")
+theme_override_font_sizes/font_size = 32
+text = "Réacteur"
+
+[node name="ButtonCondensator1" type="Button" parent="HBoxContainer/UpgradePlayer1" unique_id=1519628884]
+layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonReactor1")
+focus_neighbor_top = NodePath("../ButtonReactor1")
+focus_neighbor_right = NodePath("../ButtonAccumulor1")
+focus_neighbor_bottom = NodePath("../ButtonAccumulor1")
+theme_override_font_sizes/font_size = 32
+text = "Condensateur"
+
+[node name="ButtonAccumulor1" type="Button" parent="HBoxContainer/UpgradePlayer1" unique_id=452650017]
+layout_mode = 2
+focus_neighbor_left = NodePath("../ButtonCondensator1")
+focus_neighbor_top = NodePath("../ButtonCondensator1")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+theme_override_font_sizes/font_size = 32
+text = "Accumulateur"
+
+[node name="UpgradePlayer2" type="VBoxContainer" parent="HBoxContainer" unique_id=364881215]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="ButtonShield2" type="Button" parent="HBoxContainer/UpgradePlayer2" unique_id=13452938]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Bouclier"
+
+[node name="ButtonReactor2" type="Button" parent="HBoxContainer/UpgradePlayer2" unique_id=1845605653]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Réacteur"
+
+[node name="ButtonCondensator2" type="Button" parent="HBoxContainer/UpgradePlayer2" unique_id=1176067653]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Condensateur"
+
+[node name="ButtonAccumulor2" type="Button" parent="HBoxContainer/UpgradePlayer2" unique_id=539101461]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Accumulateur"
+
+[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/UpgradePlayer2" unique_id=1411978750]
+position = Vector2(191, -43)
+texture = ExtResource("6_0sbr5")
+
+[connection signal="pressed" from="ButtonOk" to="." method="_on_button_ok_pressed"]

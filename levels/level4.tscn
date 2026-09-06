@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://disvx5exohvhw"]
+
+[ext_resource type="PackedScene" uid="uid://d2ti8k7efsbdw" path="res://levels/level_base.tscn" id="1_rxes3"]
+[ext_resource type="Script" uid="uid://dmsbk8qab8swd" path="res://levels/level4.gd" id="2_cqjvr"]
+[ext_resource type="PackedScene" uid="uid://blj440oymc77c" path="res://enemy/enemy.tscn" id="3_3cb6x"]
+
+[node name="Level4" unique_id=1659077494 instance=ExtResource("1_rxes3")]
+script = ExtResource("2_cqjvr")
+
+[node name="Enemy" parent="Enemies" parent_id_path=PackedInt32Array(2124219939) index="0" unique_id=14804077 instance=ExtResource("3_3cb6x")]
+position = Vector2(1053, 648)
+collision_mask = 3
+
+[node name="Enemy2" parent="Enemies" parent_id_path=PackedInt32Array(2124219939) index="1" unique_id=1718586907 instance=ExtResource("3_3cb6x")]
+position = Vector2(1387, -121)
+collision_mask = 3
+
+[node name="Enemy positions" type="Node" parent="." index="7" unique_id=667073176]
+
+[node name="MarkerUpLeft" type="Marker2D" parent="Enemy positions" index="0" unique_id=986451006]
+position = Vector2(797, 31)
+
+[node name="MarkerDownRight" type="Marker2D" parent="Enemy positions" index="1" unique_id=2140707059]
+position = Vector2(1126, 891)
+
+[node name="SpawnPointUpLeft" type="Marker2D" parent="Enemy positions" index="2" unique_id=1130253232]
+position = Vector2(1321, -347)
+
+[node name="SpawnPointDownRight" type="Marker2D" parent="Enemy positions" index="3" unique_id=11784361]
+position = Vector2(2087, 1254)
+
+[node name="Bullets" type="Node" parent="." index="8" unique_id=1247459603]
+
+[connection signal="death" from="Enemies/Enemy" to="." method="_on_enemy_death"]
+[connection signal="move_finished" from="Enemies/Enemy" to="." method="_on_enemy_move_finished"]
+[connection signal="death" from="Enemies/Enemy2" to="." method="_on_enemy_death"]
+[connection signal="move_finished" from="Enemies/Enemy2" to="." method="_on_enemy_move_finished"]
+
+[editable path="Player"]
+[editable path="Player2"]

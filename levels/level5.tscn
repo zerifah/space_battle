@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dbnqdx4vtadsa"]
+
+[ext_resource type="PackedScene" uid="uid://d2ti8k7efsbdw" path="res://levels/level_base.tscn" id="1_23uhd"]
+[ext_resource type="PackedScene" uid="uid://bc43hiseyjbhd" path="res://enemy/big_boss.tscn" id="2_8mh55"]
+[ext_resource type="Script" uid="uid://b74l45fh1gku4" path="res://levels/level5.gd" id="2_hydfx"]
+
+[node name="Level5" unique_id=1659077494 instance=ExtResource("1_23uhd")]
+script = ExtResource("2_hydfx")
+
+[node name="BigBoss" parent="." index="8" unique_id=549054656 instance=ExtResource("2_8mh55")]
+position = Vector2(926, 458)
+
+[connection signal="death_big_boss" from="BigBoss" to="." method="_on_big_boss_death_big_boss"]
+
+[editable path="Player"]
+[editable path="Player2"]

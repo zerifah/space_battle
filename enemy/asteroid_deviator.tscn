@@ -3,13 +3,12 @@
 [ext_resource type="Script" uid="uid://c86c1vdl1ug8q" path="res://enemy/asteroid_deviator.gd" id="1_jni7q"]
 [ext_resource type="Texture2D" uid="uid://cfudbedrr6us5" path="res://enemy/asteroid_deviator_front.png" id="2_o3wd4"]
 [ext_resource type="Texture2D" uid="uid://qch43u27q7rw" path="res://enemy/asteroid_deviator_back.png" id="3_fgv3p"]
-[ext_resource type="PackedScene" uid="uid://cd46cds2quos5" path="res://base/damage.tscn" id="3_jni7q"]
+[ext_resource type="PackedScene" uid="uid://cd46cds2quos5" path="res://damage/damage.tscn" id="3_jni7q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_csvsm"]
 size = Vector2(68.375, 75)
 
 [node name="AsteroidDeviator" type="Area2D" unique_id=1073559902]
-position = Vector2(-1, 3)
 script = ExtResource("1_jni7q")
 
 [node name="Front" type="Sprite2D" parent="." unique_id=1253086571]
@@ -41,9 +40,10 @@ wait_time = 1.2
 one_shot = true
 
 [node name="Damages" parent="." unique_id=712569716 instance=ExtResource("3_jni7q")]
+visible = false
 z_index = 1
 position = Vector2(4, 49)
 scale = Vector2(1.4600226, 1.3969594)
-frame_progress = 0.20175262
+frame_progress = 0.8835652
 
 [connection signal="timeout" from="TimerAsteroidSpawner" to="." method="_on_timer_asteroid_spawner_timeout"]

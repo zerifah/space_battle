@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://conuxck5u17eo"]
+
+[ext_resource type="PackedScene" uid="uid://d2ti8k7efsbdw" path="res://levels/level_base.tscn" id="1_sjb42"]
+[ext_resource type="Script" uid="uid://dfceqay7loexs" path="res://levels/level1.gd" id="2_61w3m"]
+[ext_resource type="PackedScene" uid="uid://bwhyo37mgolq4" path="res://asteroid/asteroid.tscn" id="7_f7u7y"]
+[ext_resource type="PackedScene" uid="uid://c1lttrbr5mnmx" path="res://base/base.tscn" id="8_jq2cn"]
+
+[node name="Level1" unique_id=1659077494 instance=ExtResource("1_sjb42")]
+script = ExtResource("2_61w3m")
+
+[node name="Base" parent="." index="4" unique_id=188406324 instance=ExtResource("8_jq2cn")]
+position = Vector2(138, 460)
+
+[node name="AsteroidTimer" type="Timer" parent="." index="7" unique_id=247193807]
+wait_time = 3.0
+autostart = true
+
+[node name="Asteroid" parent="Asteroids" parent_id_path=PackedInt32Array(722333116) index="0" unique_id=1169255621 instance=ExtResource("7_f7u7y")]
+position = Vector2(978, 459)
+
+[connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]
+[connection signal="collision" from="Asteroids/Asteroid" to="." method="_on_asteroid_collision"]
+[connection signal="destroyed" from="Asteroids/Asteroid" to="." method="_on_asteroid_destroyed"]
+
+[editable path="UserInterface/Menu"]
+[editable path="Player"]
+[editable path="Player2"]

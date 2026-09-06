@@ -22,6 +22,7 @@ var new_texture_crash = preload("res://asteroid/asteroid_crash.png")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
 	#pass
+
 func _ready() -> void:
 	size = scale.x
 	health = roundi(size * 2) # Function who give health in function of size
@@ -41,8 +42,8 @@ func _on_body_entered(body) :
 		body.touched()
 	sprite.texture = new_texture_health_on_0
 	
-func die():
-	queue_free()
+#func die():
+	#queue_free()
 	
 func on_touch() :
 	health -= damage
@@ -59,3 +60,7 @@ func on_touch() :
 func _on_area_entered(area: Area2D) -> void:
 	print('Emission')
 	collision.emit(self, area)
+
+
+func _on_crash(_position: Vector2, _scale: Vector2) -> void:
+	pass # Replace with function body.

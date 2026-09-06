@@ -21,7 +21,7 @@ func spawn_asteroid() -> void:
 	
 	var asteroid_out = asteroid_scene.instantiate()
 	asteroid_out.position = Vector2(out_position.global_position.x, out_position.global_position.y) # Spawn at random x
-	asteroid_out.delta_speed_y = 0
+	asteroid_out.delta_speed_y = randf_range(-0.2, 0.2)
 	asteroid_out.z_index = 0
 	get_node("Asteroids").add_child(asteroid_out)
 	

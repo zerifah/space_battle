@@ -20,7 +20,6 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func _on_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	var type_target = area.get_parent()
-	
 	# Target is Asteroid
 	if area.has_method('on_touch') :
 		area.on_touch()
@@ -37,6 +36,8 @@ func _on_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int
 			if randi_range(0, 3) == 0 : # sometimes, it's touch
 				area.explode()
 		queue_free()
+	elif area.name == 'BossHearth' :
+		type_target.touched()
 	# Target is bullet
 	else :
 		pass 
@@ -44,5 +45,6 @@ func _on_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int
 func _on_body_entered(body: Node2D) -> void:
 	# Si le body entrant n'est pas l'émetteur du projectile
 	if get_parent() != body :
-		body.explode()
 		queue_free()
+		if body.name != 'BigBoss' : # Player1 and 2 can shoot on themselves
+			body.touched()

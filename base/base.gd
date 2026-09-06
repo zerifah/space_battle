@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var dommage_scene = preload("res://base/damage.tscn")
+@onready var dommage_scene = preload("res://damage/damage.tscn")
 
 var speed = 0
 var state = 'moving'

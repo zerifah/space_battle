@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://cu5kijqcusqnc"]
+
+[ext_resource type="PackedScene" uid="uid://d2ti8k7efsbdw" path="res://levels/level_base.tscn" id="1_raxm7"]
+[ext_resource type="Script" uid="uid://bfu3ok1uoldsr" path="res://levels/level2.gd" id="2_p1d34"]
+[ext_resource type="FontFile" uid="uid://bs5ef0n12tf1s" path="res://themes/kenvector_future.ttf" id="3_76ugp"]
+[ext_resource type="PackedScene" uid="uid://bwhyo37mgolq4" path="res://asteroid/asteroid.tscn" id="3_s1bpp"]
+[ext_resource type="PackedScene" uid="uid://dfop55hl5b356" path="res://levels/spawner.tscn" id="4_76ugp"]
+[ext_resource type="PackedScene" uid="uid://c1lttrbr5mnmx" path="res://base/base.tscn" id="5_e8p81"]
+[ext_resource type="PackedScene" uid="uid://jcko5y1auj2c" path="res://enemy/asteroid_deviator.tscn" id="6_55gdq"]
+
+[node name="Level2" unique_id=1659077494 instance=ExtResource("1_raxm7")]
+script = ExtResource("2_p1d34")
+two_players = false
+
+[node name="BackgroundText" type="ColorRect" parent="UserInterface" parent_id_path=PackedInt32Array(1313313022) index="4" unique_id=1124259065]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="TextDeviator" type="Label" parent="UserInterface" parent_id_path=PackedInt32Array(1313313022) index="5" unique_id=1026821791]
+visible = false
+custom_maximum_size = Vector2(800, 800)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -454.0
+offset_top = -321.0
+offset_right = 471.0
+offset_bottom = 276.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_76ugp")
+theme_override_font_sizes/font_size = 41
+text = "Mais qu'est-ce que c'est? Un vaisseau de l'alliance de l'Etoile Rouge!
+
+Oh! c'est lui qui aspire les astéroides et les envoie sur notre base!
+
+Il faut le mettre hors d'état de nuire et ensuite, on ira dire deux mots à la confrérie.
+"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Base" parent="." index="4" unique_id=188406324 instance=ExtResource("5_e8p81")]
+position = Vector2(138, 460)
+
+[node name="AsteroidsSpawner" parent="." index="7" unique_id=1775217180 instance=ExtResource("4_76ugp")]
+
+[node name="Score timer" type="Timer" parent="." index="8" unique_id=516126268]
+autostart = true
+
+[node name="AsteroidDeviator" parent="." index="9" unique_id=1073559902 instance=ExtResource("6_55gdq")]
+position = Vector2(1627, 432)
+
+[node name="Asteroid" parent="Asteroids" parent_id_path=PackedInt32Array(722333116) index="0" unique_id=1169255621 instance=ExtResource("3_s1bpp")]
+position = Vector2(1223, 303)
+
+[connection signal="death_deviator" from="AsteroidDeviator" to="." method="_on_asteroid_deviator_death_deviator"]
+[connection signal="collision" from="Asteroids/Asteroid" to="." method="_on_asteroid_collision"]
+[connection signal="exit" from="Asteroids/Asteroid" to="." method="_on_asteroid_exit"]
+
+[editable path="Player"]
+[editable path="Player2"]

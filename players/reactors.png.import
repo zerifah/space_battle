@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4lht3xggtu55"
-path="res://.godot/imported/base-damage1.png-667311c97d3f19442f5530f1d45ff58a.ctex"
+uid="uid://rah2f8ljskkt"
+path="res://.godot/imported/reactors.png-77855277c377a8ce0d42257bad966363.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://base/base-damage1.png"
-dest_files=["res://.godot/imported/base-damage1.png-667311c97d3f19442f5530f1d45ff58a.ctex"]
+source_file="res://players/reactors.png"
+dest_files=["res://.godot/imported/reactors.png-77855277c377a8ce0d42257bad966363.ctex"]
 
 [params]
 

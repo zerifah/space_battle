@@ -2,29 +2,36 @@ extends CanvasLayer
 
 @onready var mission_text = $MissionText
 @onready var mission_title= $Title
-@onready var level1 = preload("res://levels/level_1.tscn")
-@onready var level2 = preload("res://levels/level_2.tscn")
+@onready var level1 = load("res://levels/level1.tscn")
+@onready var level2 = load("res://levels/level2.tscn")
+@onready var level3 = load("res://levels/level3.tscn")
+@onready var level4 = load("res://levels/level4.tscn")
 @onready var next_level = level1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print('Mission initialié pour le niveau ', Settings.level)
+	print('Mission initialisée pour le niveau ', Settings.level)
 	var msg = ''
 	if Settings.level == 1 :
 		msg = prepare_message_1()
 	elif Settings.level == 2 :
 		msg = prepare_message_2()
 		next_level = level2
+	elif Settings.level == 3 :
+		msg = prepare_message_3()
+		next_level = level3
+	elif Settings.level == 4 :
+		msg = prepare_message_4()
+		next_level = level4
 		
+	
 	mission_title.text ='Mission '+ str(Settings.level)
 	mission_text.text = msg
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-	#pass
 	
 func _on_button_ok_pressed() -> void:
 	get_tree().change_scene_to_packed(next_level)
+
 
 func prepare_message_1() ->String:
 	var plural = Settings.two_players
@@ -89,5 +96,20 @@ func prepare_message_2() ->String:
 		Il nous faut pour cela nos meilleur·es pilotes! Ce sera périlleux de la traverser \
 		sans entrer en collision avec les astéroides. Le moindre faux pas est fatal!\n \
 		Acceptez-vous de vous-y rendre?"
+	return msg
+
+func prepare_message_3() ->String:
+	var msg = "On a réussi!\n\nIl faut rentrer rapidement pour informer nos amis \
+		de notre découverte! Espérons qu'on aura pas trop de problème \
+		franchir dans l'autre sens la barrière d'astéroides."
+	
+	return msg
+		
+func prepare_message_4() ->String:
+	var msg = "Félicitations! \nNous vous devons une fière chandelle!\n \
+	Il est temps de maintenant libérer la galaxie de la terreur.\n \
+	Nous savons ou se trouve les commandant·es de l'Alliance Kakie. \
+	Allez-y, détruisez leurs défenses et mettez fin à leur règne! \
+	Vous etes notre seul espoir! On compte sur vous! \n Bonne chance!"
 	
 	return msg

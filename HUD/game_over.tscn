@@ -1,17 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://u26o27vjur8c"]
+[gd_scene format=3 uid="uid://u26o27vjur8c"]
 
 [ext_resource type="FontFile" uid="uid://bs5ef0n12tf1s" path="res://themes/kenvector_future.ttf" id="1_y26ei"]
 [ext_resource type="Script" uid="uid://clcku3sk5x4kh" path="res://HUD/game_over.gd" id="1_yxx3c"]
+[ext_resource type="AudioStream" uid="uid://fk6pbmbx0j2v" path="res://audio/sfx_lose.ogg" id="3_kp2nl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yxx3c"]
 font = ExtResource("1_y26ei")
 font_size = 101
 font_color = Color(0.6197352, 0.023815554, 0.2531495, 1)
 
-[node name="GameOver" type="CanvasLayer"]
+[node name="GameOver" type="CanvasLayer" unique_id=913097673]
 script = ExtResource("1_yxx3c")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1191876922]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.16862746, 0.16862746, 0.6156863)
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=887119508]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -36,7 +37,7 @@ label_settings = SubResource("LabelSettings_yxx3c")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=2035860938]
 anchors_preset = -1
 anchor_left = 0.588
 anchor_top = 0.97700006
@@ -52,5 +53,8 @@ scale = Vector2(1.6800025, 1.4375827)
 theme_override_fonts/font = ExtResource("1_y26ei")
 theme_override_font_sizes/font_size = 38
 text = "Recommencer"
+
+[node name="Audio" type="AudioStreamPlayer" parent="." unique_id=1384701002]
+stream = ExtResource("3_kp2nl")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cgbwocxc8eebv" path="res://enemy/enemy.gd" id="1_8uigf"]
 [ext_resource type="Texture2D" uid="uid://iycdkerqohww" path="res://enemy/enemyRed1.png" id="2_ieyna"]
+[ext_resource type="PackedScene" uid="uid://cd46cds2quos5" path="res://damage/damage.tscn" id="5_pmsee"]
 [ext_resource type="Texture2D" uid="uid://cc8twnyl2rr36" path="res://players/playerShip1_green_explode_6.png" id="17_icql0"]
 [ext_resource type="AudioStream" uid="uid://d3vc2aema4tcx" path="res://audio/laser_shoot.ogg" id="18_5jjyl"]
 
@@ -100,15 +101,16 @@ shape = SubResource("CircleShape2D_onrkg")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1991352018]
 libraries/ = SubResource("AnimationLibrary_v5j5c")
 
-[node name="Bullets" type="Node" parent="." unique_id=618967002]
-
 [node name="ShootArea" type="Area2D" parent="." unique_id=1188770924]
 position = Vector2(-740.75, 1.5)
 collision_layer = 256
-collision_mask = 3
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShootArea" unique_id=369244692]
 position = Vector2(169, -0.5)
 shape = SubResource("RectangleShape2D_ieyna")
+
+[node name="Damage" parent="." unique_id=197114403 instance=ExtResource("5_pmsee")]
+visible = false
 
 [connection signal="timeout" from="TimerShoot" to="." method="_on_timer_shoot_timeout"]

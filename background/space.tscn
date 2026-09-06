@@ -25,7 +25,6 @@ stretch_mode = 1
 
 [node name="Stars" type="Node2D" parent="." unique_id=748838806]
 z_index = -2
-position = Vector2(-5.345, 0)
 
 [node name="Timer_stars" type="Timer" parent="Stars" unique_id=1386843127]
 wait_time = 4.0
